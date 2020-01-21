@@ -1,7 +1,8 @@
 :root{
-    --red-color: red;
+    --button-bg: red;
     --border: rgb(206, 206, 206);
     --text-heading: black; 
-    --text-plain: black; 
+    --text-plain: black;
+    --text-light: white;
     --input-focus: rgb(255, 196, 0);
 }

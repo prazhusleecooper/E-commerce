@@ -4,8 +4,8 @@
 .header-nav {
   margin-top: 2vh;  
   margin-bottom: 3vh;  
-  margin-left: 4vh;  
-  margin-right: 4vh;  
+  margin-left: 2vw;
+  margin-right: 2vw;
 }
 
 .logo-section {
@@ -36,8 +36,8 @@
 
 /* Home Content */
 .Home {
-  margin-left: 4vh;  
-  margin-right: 4vh;  
+  margin-left: 2vw;
+  margin-right: 2vw;
 }
 
 .categories-pane{
@@ -82,6 +82,11 @@
 }
 
 /* Items section */
+.items-cluster{
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
 .item-category-text{
   color: var(--text-heading);
   font-size: 20px;
@@ -120,8 +125,51 @@
 
 .add-btn{
   border: 0px;
-  background: red;
+  background: var(--button-bg);
   border-radius: 5px;
-  color: white;
+  color: var(--text-light);
   font-size: 13.5px;
+}
+
+/* Cart Section */
+.CartSection {
+  margin-left: 2vw;
+  margin-right: 2vw;
+  height: 70vh;
+  border: 1px solid black;
+}
+
+.cart-items-text {
+  font-size: 18px var(--text-plain);
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.cart-add-btn {
+  border: 0px;
+  border-radius: 5px;
+  background: var(--button-bg);
+  color: var(--text-light);
+  font-size: 18px;
+}
+
+.cart-add-btn:focus, .add-btn{
+  outline: none;
+}
+
+  /* Footer section */
+.FooterSection{
+  margin-left: 2vw;
+  margin-right: 2vw;
+}
+
+.footer-section{
+  height: 10vh;
+  border: 1px solid var(--border);
+}
+
+.footer-content{
+  font-size: 15px;
+  color: var(--text-plain);
+
 }
