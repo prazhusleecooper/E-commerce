@@ -1,0 +1,31 @@
+@import "./variable.css";
+
+.Home {
+    margin-left: 2vw;
+    margin-right: 2vw;
+}
+
+.categories-pane {
+    width: 15%;
+    height: 70vh;
+    border: 1px solid var(--border);
+}
+
+.cat-heading {
+    color: var(--text-heading);
+    font-size: 19px;
+    text-decoration: underline;
+}
+
+.cat-name {
+    color: var(--text-plain);
+    font-size: 19px;
+
+}
+
+.items-pane {
+    margin-left: 1.5%;
+    width: 85%;
+    height: 70vh;
+    border: 1px solid var(--border);
+}

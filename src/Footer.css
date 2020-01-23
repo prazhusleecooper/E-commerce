@@ -1,0 +1,18 @@
+@import "./variable.css";
+
+.FooterSection {
+    margin-left: 2vw;
+    margin-right: 2vw;
+}
+
+.footer-section {
+    height: 10vh;
+    border: 1px solid var(--border);
+}
+
+.footer-content {
+    font-size: 15px;
+    color: var(--text-plain);
+}
+
+
