@@ -1,24 +1,67 @@
-import React, { Component } from 'react';
+import React, {Component, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Cart.css';
+// import Modal from "react-bootstrap/Modal";
+import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
+
 
 class Cart extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            empty: false
+            empty: false,
+            modal: false
         }
+
+        this.toggle = () => {
+            this.setState( {
+                modal: !this.state.modal
+            })
+        }
+        // this.addItem = this.addItem.bind(this);
+        // this.handleClose = this.handleClose.bind(this);
+        // this.addItem = this.addItem.bind(this);
+        // this.show = this.show.bind(this);
     }
 
+        //  addItem() {
+        //     const [show, setShow] = useState(false);
+        //
+        //     const handleShow = () => setShow(true);
+        //     const handleClose = () => setShow(false);
+        // }
+
     render (){
+
         return (
             <div className="CartSection">
+                {/* React-Bootstrap modal pop-up */}
+                {/*<Modal show={this.show} onHide={}>*/}
+
+                {/*</Modal>*/}
+
+                {/* MDB modal popup */}
+                <MDBContainer>
+                    <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
+                        {/*<MDBModalHeader toggle={this.toggle}></MDBModalHeader>*/}
+                        <MDBModalBody >
+                            <div className="d-flex">
+                                SAMPLE
+                            </div>
+                        </MDBModalBody>
+                        <MDBModalFooter>
+                            <MDBBtn color="secondary" onClick={this.toggle}>Close</MDBBtn>
+                            <MDBBtn color="primary">Save changes</MDBBtn>
+                        </MDBModalFooter>
+                    </MDBModal>
+                </MDBContainer>
+
                 <div className="d-flex flex-column cart-section">
                     {/* Cart Items title and add button */}
                     <div className="d-flex flex-row align-items-center justify-content-between cart-add-section">
                         <div className="cart-items-text">CART ITEMS</div>
                         <div className="cart-add-btn-section">
-                            <button className="px-4 cart-add-btn">Add</button>
+                            <button onClick={this.toggle} className="px-4 cart-add-btn">Add</button>
                         </div>
                     </div>
                     {/* Items table */}
