@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
 import SVG from 'react-inlinesvg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const homeSvg = '<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 63.699 63.699" style="enable-background:new 0 0 63.699 63.699;" xml:space="preserve"> <g> <path d="M63.663,29.424c-0.143-1.093-0.701-2.065-1.575-2.737l-11.715-9.021V8.608c0-2.275-1.851-4.126-4.125-4.126 c-2.273,0-4.125,1.851-4.125,4.126v2.705l-7.758-5.975c-0.718-0.551-1.612-0.856-2.517-0.856c-0.906,0-1.801,0.304-2.519,0.857 L1.606,26.687c-1.802,1.389-2.139,3.983-0.751,5.785c0.788,1.022,1.979,1.608,3.271,1.608c0.664,0,1.302-0.153,1.88-0.451V55.09 c0,2.275,1.851,4.127,4.126,4.127h18.534V39.732h6.351v19.482h18.271c2.274,0,4.125-1.85,4.125-4.127V33.472 c0.649,0.399,1.387,0.608,2.157,0.608c1.289,0,2.482-0.586,3.27-1.606C63.514,31.601,63.807,30.518,63.663,29.424z M59.819,30.144 c-0.08,0.105-0.189,0.122-0.247,0.122c-0.069,0-0.132-0.021-0.188-0.065L53.6,25.748V55.09c0,0.173-0.14,0.312-0.311,0.312H38.832 l0.001-19.484H24.852v19.484H10.132c-0.171,0-0.31-0.141-0.31-0.312V25.96L4.315,30.2c-0.056,0.043-0.119,0.065-0.188,0.065 c-0.059,0-0.167-0.017-0.248-0.121c-0.065-0.084-0.07-0.171-0.062-0.229c0.007-0.058,0.034-0.141,0.118-0.205L31.661,8.363 c0.138-0.105,0.239-0.106,0.379,0l13.899,10.703V8.608c0-0.172,0.14-0.311,0.311-0.311s0.312,0.139,0.312,0.311v10.935 l13.205,10.166c0.084,0.064,0.108,0.147,0.116,0.205C59.891,29.975,59.885,30.062,59.819,30.144z"/> </g> </svg>';
-const removeSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="64px" height="64px"><path fill="#E04F5F" d="M504.1,256C504.1,119,393,7.9,256,7.9C119,7.9,7.9,119,7.9,256C7.9,393,119,504.1,256,504.1C393,504.1,504.1,393,504.1,256z"/><path fill="#FFF" d="M285,256l72.5-84.2c7.9-9.2,6.9-23-2.3-31c-9.2-7.9-23-6.9-30.9,2.3L256,222.4l-68.2-79.2c-7.9-9.2-21.8-10.2-31-2.3c-9.2,7.9-10.2,21.8-2.3,31L227,256l-72.5,84.2c-7.9,9.2-6.9,23,2.3,31c4.1,3.6,9.2,5.3,14.3,5.3c6.2,0,12.3-2.6,16.6-7.6l68.2-79.2l68.2,79.2c4.3,5,10.5,7.6,16.6,7.6c5.1,0,10.2-1.7,14.3-5.3c9.2-7.9,10.2-21.8,2.3-31L285,256z"/></svg>';
-
 
 class App extends Component {
   constructor(props) {
     super(props);
-    var currentpage = "";
     this.state = {
-      page: "home",
-      currentpage: <Home />,
       cartItems: [ {
                     name: "Apple", quantity: "2", price: "100"
                    },
@@ -25,19 +21,30 @@ class App extends Component {
                    }
                  ]
     };
-    if (this.state.page === "home") {
-        this.state.currentpage = <Home />;
-    } else {
-        this.state.currentpage = <Cart />
+    this.togglePage = this.togglePage.bind(this);
+  }
+
+    togglePage() {
+      console.log("toggle function reached");
+      this.setState( state => ({
+          page: !this.state.page
+      }));
+      console.log("End of toggle function");
     }
 
-  }
-  render() {
+
+    render() {
     return (
       <div className="App">
         <HeaderNav />
-        {/*<Home />*/}
-        <Cart />
+          <Switch>
+              <Route path="/home">
+                <Home />
+              </Route>
+              <Route path="/cart" >
+                <Cart />
+              </Route>
+          </Switch>
         <Footer />
       </div>
 
@@ -45,8 +52,8 @@ class App extends Component {
   }
 }
 
-class HeaderNav extends Component {
-  render() {
+class HeaderNav extends App {
+    render() {
     return(
       <div className="header-nav">
         <div className="d-flex flex-row">
@@ -60,10 +67,10 @@ class HeaderNav extends Component {
           </div>
           <div className="d-flex align-items-center justify-content-end nav-bar">
             <div className="mr-3 nav-text-home">
-              Home
+                <NavLink exact to="/home" className="nav-link" activeClassName="nav-link-active">Home</NavLink>
             </div>
-            <div className="mr-5 nav-text-cart">
-              My Cart
+            <div onClick={this.togglePage} className="mr-5 nav-text-cart" >
+                <NavLink exact to="/cart" className="nav-link" activeClassName="nav-link-active" >Cart</NavLink>
             </div>
           </div>
         </div>
@@ -72,7 +79,7 @@ class HeaderNav extends Component {
   }
 }
 
-class Home extends Component {
+class Home extends App {
   render() {
     var categories = [ 'Fruits', 'Vegetables', 'Appliances' ];
     var fruits = [ 'Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple' ];
@@ -152,7 +159,7 @@ class Home extends Component {
   }
 }
 
-class Cart extends Component {
+class Cart extends App {
   render (){
     return (
         <div className="CartSection">
@@ -236,7 +243,7 @@ class TableItems extends App {
   }
 }
 
-class Footer extends Component {
+class Footer extends App {
   render (){
     return (
       <div className="mt-4 FooterSection">

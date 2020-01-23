@@ -28,11 +28,60 @@
 }
 
 .nav-text-home, .nav-text-cart {
-  color: var(--text-plain);
   font-size: 20px;
+  color: var(--text-plain);
   text-decoration: underline;
   cursor: pointer;
 }
+
+.nav-link {
+  font-size: 20px;
+  color: var(--nav-link-inactive);
+  text-decoration: underline;
+  text-decoration-color: var(--nav-link-inactive);
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  font-size: 20px;
+  color: var(--nav-link-inactive);
+  text-decoration: underline;
+  text-decoration-color: var(--nav-link-inactive);
+  cursor: pointer;
+}
+
+.nav-link:visited {
+  font-size: 20px;
+  color: var(--nav-link-inactive);
+  text-decoration: underline;
+  text-decoration-color: var(--nav-link-inactive);
+  cursor: pointer;
+}
+
+.nav-link-active {
+  font-size: 20px;
+  color: var(--nav-link-active);
+  text-decoration: underline;
+  text-decoration-color: var(--nav-link-active);
+  cursor: pointer;
+}
+
+.nav-link-active:hover {
+  font-size: 20px;
+  color: var(--nav-link-active);
+  text-decoration: underline;
+  text-decoration-color: var(--nav-link-active);
+  cursor: pointer;
+}
+
+.nav-link-active:visited {
+  font-size: 20px;
+  color: var(--nav-link-active);
+  text-decoration: underline;
+  text-decoration-color: var(--nav-link-active);
+  cursor: pointer;
+}
+
 
 /* Home Content */
 .Home {
@@ -173,6 +222,7 @@
 .item-table-section {
   height: 45vh;
   overflow-y: scroll;
+  scrollbar-width: none;
 }
 .item-table-section::-webkit-scrollbar {
   width: 0px;
@@ -271,3 +321,4 @@ td {
   color: var(--text-plain);
 
 }
+
