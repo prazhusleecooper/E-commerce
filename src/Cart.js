@@ -1,9 +1,10 @@
 import React, {Component, useState} from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './Cart.css';
+import Home from './Home';
 import SVG from 'react-inlinesvg';
 // import Modal from "react-bootstrap/Modal";
 import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 class Cart extends Component {
@@ -36,7 +37,11 @@ class Cart extends Component {
     render (){
 
         return (
+            <div className="MidSection">
+            {/*  Home as the child of Cart  */}
+            <Home />
             <div className="CartSection">
+
                 {/* React-Bootstrap modal pop-up */}
                 {/*<Modal show={this.show} onHide={}>*/}
 
@@ -139,6 +144,7 @@ class Cart extends Component {
 
                     {/*</div>*/}
                 </div>
+            </div>
             </div>
         );
     }

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-class Home extends Component {
-    render() {
+const Home = (props) => {
+
         var categories = [ 'Fruits', 'Vegetables', 'Appliances' ];
         var fruits = [ 'Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple','Apple' ];
         return (
@@ -46,20 +46,6 @@ class Home extends Component {
                                             </div>
                                         </div> ;
                                     })}
-
-                                    {/* ITEM BOX */}
-                                    {/*<div className="d-flex flex-column align-items-center justify-content-center ml-2 mr-5 my-2 px-4 pt-3 py-0 item-box">*/}
-                                    {/*  <div className="item-image">image</div>*/}
-                                    {/*  <div className="pt-2 item-title">Apple</div>*/}
-                                    {/*  <div className="d-flex flex-row align-items-center justify-content-between pt-2 pb-3 price-add-section">*/}
-                                    {/*    <div className="price-text">Rs.50</div>*/}
-                                    {/*    <div className="add-btn-section">*/}
-                                    {/*      <button className="px-2 py-1 add-btn">Add</button>*/}
-                                    {/*    </div>*/}
-                                    {/*  </div>*/}
-                                    {/*</div>*/}
-
-
                                 </div>
                             </div>
                         </div>
@@ -68,7 +54,6 @@ class Home extends Component {
                 </div>
             </div>
         );
-    }
 }
 
 export default Home;
