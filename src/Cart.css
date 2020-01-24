@@ -1,5 +1,9 @@
 @import "./variable.css";
 
+*{
+    scrollbar-width: none;
+}
+
 /* Search bar */
 .search-bar-input {
     height: 4vh;
@@ -88,11 +92,11 @@
     font-size: 18px;
 }
 
-.cart-add-btn:focus, .add-btn{
+.cart-add-btn:focus, .add-btn {
     outline: none;
 }
 
-.cart-empty-text{
+.cart-empty-text {
     font-size: 18px;
     color: var(--text-heading);
 }
@@ -166,7 +170,7 @@ td {
     width: 20%;
 }
 
-.td-total{
+.td-total {
     background-color: white;
 }
 
@@ -178,7 +182,7 @@ td {
     background-repeat: no-repeat;
 }
 
-@-moz-document url-prefix(){
+@-moz-document url-prefix() {
     .remove-btn {
         border: none;
         width: 25px;
@@ -198,6 +202,37 @@ td {
     font-size: 18px;
 }
 
-.checkout-btn:focus, .add-btn{
+.checkout-btn:focus, .add-btn {
+    outline: none;
+}
+
+/* MDN Popup */
+.popup-title {
+    font-weight: bold;
+    text-decoration: underline;
+    color: var(--text-heading);
+}
+
+.close-svg-section {
+    cursor: pointer;
+}
+
+.popup-input {
+    width: 95%;
+    border: none;
+    border-radius: 5px;
+    height: 3em;
+    background-color: var(--popup-input-bg);
+}
+
+.popup-add-btn {
+    border: 0px;
+    border-radius: 5px;
+    background: var(--button-bg);
+    color: var(--text-light);
+    font-size: 18px;
+}
+
+.popup-add-btn:focus {
     outline: none;
 }
