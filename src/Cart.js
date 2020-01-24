@@ -38,8 +38,6 @@ class Cart extends Component {
 
         return (
             <div className="MidSection">
-            {/*  Home as the child of Cart  */}
-            <Home />
             <div className="CartSection">
 
                 {/* React-Bootstrap modal pop-up */}
