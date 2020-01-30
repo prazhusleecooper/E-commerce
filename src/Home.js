@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Cart from './Cart';
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            change: true,
             categories: ['Fruits', 'Vegetables', 'Appliances'],
             checked_categories: [],
             cat_json: {
-                "Fruits": false,
+                "Fruits": true,
                 "Vegetables": true,
                 "Appliances": true
             },
+            sample: [{"Fruits": true},{"Vegetables": true},{"appliances": true}],
             homeItems: [
                 {
                     "title": "Apple",
@@ -64,32 +67,50 @@ class Home extends Component {
                     "category": "Appliances"
                 }
             ]
-        }
+        };
         this.state.checked_categories = this.state.categories;
+        let x = "Vegetables";
+        // this.state.sample[1][x] = false;
+        let keyys = Object.keys(this.state.sample);
+        keyys.map(keyy => {
 
+            let keyx = Object.keys(this.state.sample[keyy]);
+            if(keyx[0] === x){
+                console.log("OIII");
+                this.state.sample[keyy][x] = false;
+            }
+            console.log("KEYYY:: ", this.state.sample[keyy]);
+        });
+        // for (let i = 0; i < this.state.categories.length; i++) {
+        //     this.state.categories[i].row_number = i;
+        // }
+
+        this.state.cat_json[x] = false;
+        console.log("CAT-Json:::::", this.state.cat_json);
     }
 
-    handleClick(e, cat) {
-        Object.entries(this.state.cat_json).map(keyy => {
-            if(cat === keyy[0]) {
-                this.setState(keyy = false);
-                console.log("Updated state:", this.state);
+    handleClick(cat) {
+        console.log("cat is :", cat);
+        let arrayIndex = Object.keys(this.state.sample);
+        arrayIndex.map(index => {
+            let indexKey = Object.keys(this.state.sample[index]);
+            if(indexKey[0] === cat) {
+                this.state.sample[index][cat] = false;
             }
+        });
+        console.log("LATEST SAMPLE: ", this.state.sample);
+    }
 
-        })
-        console.log("this: ", this.state.cat_json.key_ops);
-        if(this.state.cat_json.keys.Fruits === true ){
-            console.log("includes");
-        } else {
-            console.log("not available");
-        }
-
+    checkboxChange(category) {
+        console.log("CHECK BOX TRIGGERED FOR :", category);
+        this.state.cat_json[category] = !this.state.cat_json[category];
+        this.setState({});
+        console.log("CAT_JSON latest::::::", this.state.cat_json);
     }
 
     render() {
         return (
             <div className="Home">
-                {/*<button onClick={(e) => this.handleClick(e)}>BTN</button>*/}
                 <div className="d-flex flex-row home-content">
                     <div className="d-flex flex-column align-items-start p-4 categories-pane">
                         <div className="pb-2 cat-heading">
@@ -99,7 +120,7 @@ class Home extends Component {
                             {this.state.categories.map(category => {
                                 return( <div className="pb-1 cat-name">
                                     <input type="checkbox" name={category} value={category}
-                                           className="mr-2" defaultChecked={true} onChange={(e) => this.handleClick(e, category)} /> {category}
+                                           className="mr-2" defaultChecked={true} onChange={() => this.checkboxChange(category)} /> {category}
                                 </div>);
                             })}
                         </div>
@@ -113,7 +134,7 @@ class Home extends Component {
                         <div className="m-4 items-cluster">
                             <div className="d-flex flex-column align-items-start">
                                     {/* Normal loop without checkbox condition */}
-                                    {
+                                 {/*   {
                                         this.state.categories.map(category => {
 
                                             return (
@@ -144,10 +165,10 @@ class Home extends Component {
 
                                             );
                                         })
-                                    }
+                                    }*/}
 
                                 {/* Loop with checkbox condition */}
-                                {
+                             {/*   {
 
                                 this.state.categories.map(category => {
 
@@ -180,7 +201,7 @@ class Home extends Component {
 
                                     );
                                 })
-                            }
+                            }*/}
                             <div>_____________</div>
  {/*  Loop using cat_json  */}
  {
