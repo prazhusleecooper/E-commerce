@@ -23,16 +23,7 @@ class App extends Component {
                    }
                  ]
     };
-    this.togglePage = this.togglePage.bind(this);
   }
-
-    togglePage() {
-      console.log("toggle function reached");
-      this.setState( state => ({
-          page: !this.state.page
-      }));
-      console.log("End of toggle function");
-    }
 
 
     render() {
