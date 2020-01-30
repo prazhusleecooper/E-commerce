@@ -9,7 +9,7 @@ class Home extends Component {
             categories: ['Fruits', 'Vegetables', 'Appliances'],
             checked_categories: [],
             cat_json: {
-                "Fruits": true,
+                "Fruits": false,
                 "Vegetables": true,
                 "Appliances": true
             },
@@ -70,8 +70,15 @@ class Home extends Component {
     }
 
     handleClick(e, cat) {
-        console.log("this: ", cat);
-        if(this.state.categories.includes(cat)){
+        Object.entries(this.state.cat_json).map(keyy => {
+            if(cat === keyy[0]) {
+                this.setState(keyy = false);
+                console.log("Updated state:", this.state);
+            }
+
+        })
+        console.log("this: ", this.state.cat_json.key_ops);
+        if(this.state.cat_json.keys.Fruits === true ){
             console.log("includes");
         } else {
             console.log("not available");
@@ -142,38 +149,75 @@ class Home extends Component {
                                 {/* Loop with checkbox condition */}
                                 {
 
-                                    this.state.categories.map(category => {
+                                this.state.categories.map(category => {
 
-                                        return (
-                                            <div className="returnDiv">
-                                                <div className="d-flex flex-row item-category">
-                                                    <div className="item-category-text">{category}</div>
-                                                </div>
-                                                <div className="d-flex flex-row items-list-display">
-
-                                                    {
-                                                        this.state.homeItems.map(homeItem => {
-                                                            if(homeItem.category === category) {
-                                                                return <div className="d-flex flex-column align-items-center justify-content-center ml-5 mb-4 px-4 pt-3 py-0 item-box">
-                                                                    <div className="item-image">image</div>
-                                                                    <div className="pt-2 item-title">{homeItem.title}</div>
-                                                                    <div
-                                                                        className="d-flex flex-row align-items-center justify-content-between pt-2 pb-3 price-add-section">
-                                                                        <div className="price-text">Rs.{homeItem.price}</div>
-                                                                        <div className="add-btn-section">
-                                                                            <button className="px-2 py-1 add-btn">Add</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div> ;
-                                                            }
-                                                        })
-                                                    }
-                                                </div>
+                                    return (
+                                        <div className="returnDiv">
+                                            <div className="d-flex flex-row item-category">
+                                                <div className="item-category-text">{category}</div>
                                             </div>
+                                            <div className="d-flex flex-row items-list-display">
 
-                                        );
-                                    })
-                                }
+                                                {
+                                                    this.state.homeItems.map(homeItem => {
+                                                        if(homeItem.category === category) {
+                                                            return <div className="d-flex flex-column align-items-center justify-content-center ml-5 mb-4 px-4 pt-3 py-0 item-box">
+                                                                <div className="item-image">image</div>
+                                                                <div className="pt-2 item-title">{homeItem.title}</div>
+                                                                <div
+                                                                    className="d-flex flex-row align-items-center justify-content-between pt-2 pb-3 price-add-section">
+                                                                    <div className="price-text">Rs.{homeItem.price}</div>
+                                                                    <div className="add-btn-section">
+                                                                        <button className="px-2 py-1 add-btn">Add</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div> ;
+                                                        }
+                                                    })
+                                                }
+                                            </div>
+                                        </div>
+
+                                    );
+                                })
+                            }
+                            <div>_____________</div>
+ {/*  Loop using cat_json  */}
+ {
+
+                                Object.entries(this.state.cat_json).map(category => {
+                                    return category[1] && <div className="returnDiv">
+                                            <div className="d-flex flex-row item-category">
+                                                {console.log("UPPER VAL", category[1])}
+                                                <div className="item-category-text">{category[0]}</div>
+                                            </div>
+                                            <div className="d-flex flex-row items-list-display">
+
+                                                {
+                                                    this.state.homeItems.map(homeItem => {
+                                                        console.log("CAT VAL:", category);
+                                                        if(homeItem.category === category[0]) {
+                                                            return <div className="d-flex flex-column align-items-center justify-content-center ml-5 mb-4 px-4 pt-3 py-0 item-box">
+                                                                <div className="item-image">image</div>
+                                                                <div className="pt-2 item-title">{homeItem.title}</div>
+                                                                <div
+                                                                    className="d-flex flex-row align-items-center justify-content-between pt-2 pb-3 price-add-section">
+                                                                    <div className="price-text">Rs.{homeItem.price}</div>
+                                                                    <div className="add-btn-section">
+                                                                        <button className="px-2 py-1 add-btn">Add</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div> ;
+                                                        }
+                                                    })
+                                                }
+                                            </div>
+                                        </div>
+
+
+                                    ;
+                                })
+                            }
                             </div>
                         </div>
                     </div>
