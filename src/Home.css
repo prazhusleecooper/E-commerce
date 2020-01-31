@@ -52,6 +52,7 @@
 .item-box {
     border: 1px solid var(--border);
     border-radius: 7px;
+    cursor: pointer;
 }
 .item-image {
     width: 100px;
@@ -83,4 +84,35 @@
     border-radius: 5px;
     color: var(--text-light);
     font-size: 13.5px;
+}
+
+/* Popup section */
+.close-svg-section {
+    width: 100%;
+}
+
+.popup-details-section {
+    width: 100%;
+}
+
+.popup-item-title {
+    width: 100%;
+    word-break: break-all;
+    font-size: 1.75em;
+    font-weight: 500;
+}
+
+.popup-item-desc {
+    width: 100%;
+    word-break: break-all;
+    font-size: 1em;
+}
+
+.popup-price-add-section {
+    width: 100%;
+}
+
+.item-price {
+    font-size: 1.313em;
+    font-weight: 600;
 }

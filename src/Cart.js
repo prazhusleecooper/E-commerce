@@ -1,9 +1,8 @@
 import React, {Component, useState} from 'react';
 import './Cart.css';
-import Home from './Home';
 import SVG from 'react-inlinesvg';
 // import Modal from "react-bootstrap/Modal";
-import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
+import { MDBContainer, MDBModal, MDBModalBody } from 'mdbreact';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -21,30 +20,13 @@ class Cart extends Component {
                 modal: !this.state.modal
             })
         }
-        // this.addItem = this.addItem.bind(this);
-        // this.handleClose = this.handleClose.bind(this);
-        // this.addItem = this.addItem.bind(this);
-        // this.show = this.show.bind(this);
     }
-
-        //  addItem() {
-        //     const [show, setShow] = useState(false);
-        //
-        //     const handleShow = () => setShow(true);
-        //     const handleClose = () => setShow(false);
-        // }
 
     render (){
 
         return (
             <div className="MidSection">
             <div className="CartSection">
-
-                {/* React-Bootstrap modal pop-up */}
-                {/*<Modal show={this.show} onHide={}>*/}
-
-                {/*</Modal>*/}
-
                 {/* MDB modal popup */}
                 <MDBContainer>
                     <MDBModal isOpen={this.state.modal} toggle={this.toggle} centered>
