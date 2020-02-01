@@ -116,3 +116,9 @@
     font-size: 1.313em;
     font-weight: 600;
 }
+
+/* carousel arrows color */
+.carousel-control-next,
+.carousel-control-prev {
+    filter: invert(50%);
+}
