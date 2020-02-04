@@ -85,6 +85,8 @@ class Home extends Component {
             },
             /* close icon - svg */
             closeSvg: '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="0.75em" viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve"><g><g><path d="M300.188,246L484.14,62.04c5.06-5.064,7.852-11.82,7.86-19.024c0-7.208-2.792-13.972-7.86-19.028L468.02,7.872    c-5.068-5.076-11.824-7.856-19.036-7.856c-7.2,0-13.956,2.78-19.024,7.856L246.008,191.82L62.048,7.872    c-5.06-5.076-11.82-7.856-19.028-7.856c-7.2,0-13.96,2.78-19.02,7.856L7.872,23.988c-10.496,10.496-10.496,27.568,0,38.052    L191.828,246L7.872,429.952c-5.064,5.072-7.852,11.828-7.852,19.032c0,7.204,2.788,13.96,7.852,19.028l16.124,16.116    c5.06,5.072,11.824,7.856,19.02,7.856c7.208,0,13.968-2.784,19.028-7.856l183.96-183.952l183.952,183.952    c5.068,5.072,11.824,7.856,19.024,7.856h0.008c7.204,0,13.96-2.784,19.028-7.856l16.12-16.116    c5.06-5.064,7.852-11.824,7.852-19.028c0-7.204-2.792-13.96-7.852-19.028L300.188,246z"/></g></g>',
+            searchBarInput: false,  /* Search Bar Empty => false || Search Bar not Empty => true */
+            searchItems: null
         };
 
     }
@@ -119,21 +121,38 @@ class Home extends Component {
         this.setState({});
     }
 
-    addItem(item) {
-        console.log("THE SELECTED ITEM IS ::", item);
+    searchItem = (e) => {
+        // console.log("INPUT CHANGED");
+        // // let inputValue = this.inputValue;
+        // console.log("VALUE FOR INPUT FIELD::", e.target.value);
+        // if(e.target.value === "") {
+        //     console.log("VAlue is empty");
+        // }
+        console.log("search bar triggered");
+        if(e.target.value === "") {
+            console.log("Search value is empty");
+            this.setState({
+                searchBarInput: false
+            });
+        } else {
+            console.log("Search value is not empty");
+            this.setState({
+                searchBarInput: true
+            });
+            let searchResults = this.state.homeItems.filter( function (homeItem) {
+                if(homeItem.title.toUpperCase().includes(e.target.value.toUpperCase()) || homeItem.category.toUpperCase().includes(e.target.value.toUpperCase()) || homeItem.description.toUpperCase().includes(e.target.value.toUpperCase())) {
+                    return homeItem;
+                }
+            })
+            console.log("SEARCH RESULTS ARE:::", searchResults);
+            this.setState({
+                searchResults: searchResults
+            })
+            console.log("STATE SEARCH RESUlTS::", this.state.searchResults);
+        }
+
     }
 
-    /* method to trigger the toast notification */
-    notify = () => {
-        console.log("NOTIFY TRIGGERED::", this.state.selected_item);
-        toast("Item has been added to cart", {type: toast.TYPE.WARNING });
-    }
-
-    /* Add item to cart */
-    // addToCart = (item) => {
-    //     console.log("ADD TO CART TRIGGERED:::");
-    //     this.notify();
-    // }
 
     render() {
         return (
@@ -206,7 +225,7 @@ class Home extends Component {
                                     <div className="d-flex flex-row align-items-center justify-content-between popup-price-add-section">
                                         <div className="item-price">Rs.{this.state.selected_item.price}</div>
                                         <div onClick={() => this.addToCart(this.state.selected_item)}>
-                                            <button className="px-4 py-2 popup-add-btn">Addoooo</button>
+                                            <button className="px-4 py-2 popup-add-btn">Add</button>
                                         </div>
                                     </div>
                                 </div>
@@ -233,12 +252,14 @@ class Home extends Component {
                     <div className="d-flex flex-column items-pane">
                         <div className="d-flex flex-row align-items-center justify-content-end">
                             <div className="mx-4 my-3 search-bar-div">
-                                <input name="search-bar" placeholder="Search Item" className="search-bar-input px-2"/>
+                                {/* Search Bar */}
+                                <input name="search-bar" placeholder="Search Item" className="search-bar-input px-2" onChange={(e) => this.searchItem(e)} />
                             </div>
                         </div>
                         <div className="m-4 items-cluster">
-                            <div className="d-flex flex-column align-items-start">
-                            {
+                            {/* Default - all items will be rendered */}
+                            { !this.state.searchBarInput && <div className="d-flex flex-column align-items-start">
+                                {
                                 Object.entries(this.state.cat_json).map(category => {
                                     return (category[1] && <div className="returnDiv">
                                             <div className="d-flex flex-row item-category">
@@ -249,8 +270,10 @@ class Home extends Component {
                                                 {
                                                     this.state.homeItems.map(homeItem => {
                                                         if(homeItem.category === category[0]) {
-                                                            return <div className="d-flex flex-column align-items-center justify-content-center ml-5 mb-4 px-4 pt-3 py-0 item-box" onClick={() => this.toggleOn(homeItem)}>
-                                                                <div className="item-image">image</div>
+                                                            return <div className="d-flex flex-column align-items-center justify-content-center ml-5 mb-4 px-4 pt-4 py-0 item-box" onClick={() => this.toggleOn(homeItem)}>
+                                                                <div className="item-image-section">
+                                                                    <img className="item-image" src={homeItem.img[1]} width="100px" height="100px" />
+                                                                </div>
                                                                 <div className="pt-2 item-title">{homeItem.title}</div>
                                                                 <div
                                                                     className="d-flex flex-row align-items-center justify-content-between pt-2 pb-3 price-add-section">
@@ -266,8 +289,75 @@ class Home extends Component {
                                             </div>
                                         </div>);
                                 })
-                            }
-                            </div>
+                                }
+                            </div> }
+
+                            {/* Search items - searched Items will be rendered */}
+                            { this.state.searchBarInput && <div className="d-flex flex-column align-items-start">
+                                <div className="d-flex flex-row item-category">
+                                    <div className="item-category-text">Search Results</div>
+                                </div>
+                                <div className="d-flex flex-row items-list-display">
+
+                                    { this.state.searchResults.length===0? <div className="search-info">Sorry, the product you are looking for is not available</div>:<div></div> }
+                                    {
+
+                                        this.state.searchResults.map(item => {
+                                                if (true) {
+                                                return (<div
+                                                    className="d-flex flex-column align-items-center justify-content-center ml-5 mb-4 px-4 pt-4 py-0 item-box"
+                                                    onClick={() => this.toggleOn(item)}>
+                                                    <div className="item-image-section">
+                                                        <img className="item-image" src={item.img[1]} width="100px"
+                                                             height="100px"/>
+                                                    </div>
+                                                    <div className="pt-2 item-title">{item.title}</div>
+                                                    <div
+                                                        className="d-flex flex-row align-items-center justify-content-between pt-2 pb-3 price-add-section">
+                                                        <div className="price-text">Rs.{item.price}</div>
+                                                        <div className="add-btn-section">
+                                                            <button className="px-2 py-1 add-btn">Add</button>
+                                                        </div>
+                                                    </div>
+                                                </div>);
+                                                }
+
+                                        })
+                                    }
+                                </div>
+                                {/*{
+
+                                    Object.entries(this.state.cat_json).map(category => {
+                                        return (category[1] && <div className="returnDiv">
+                                            // <div className="d-flex flex-row item-category">
+                                            //     <div className="item-category-text">{category[0]}</div>
+                                            // </div>
+                                            <div className="d-flex flex-row items-list-display">
+
+                                                {
+                                                    this.state.homeItems.map(homeItem => {
+                                                        if(homeItem.category === category[0]) {
+                                                            return <div className="d-flex flex-column align-items-center justify-content-center ml-5 mb-4 px-4 pt-4 py-0 item-box" onClick={() => this.toggleOn(homeItem)}>
+                                                                <div className="item-image-section">
+                                                                    <img className="item-image" src={homeItem.img[1]} width="100px" height="100px" />
+                                                                </div>
+                                                                <div className="pt-2 item-title">{homeItem.title}</div>
+                                                                <div
+                                                                    className="d-flex flex-row align-items-center justify-content-between pt-2 pb-3 price-add-section">
+                                                                    <div className="price-text">Rs.{homeItem.price}</div>
+                                                                    <div className="add-btn-section">
+                                                                        <button className="px-2 py-1 add-btn">Add</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div> ;
+                                                        }
+                                                    })
+                                                }
+                                            </div>
+                                        </div>);
+                                    })
+                                }*/}
+                            </div> }
                         </div>
                     </div>
                 </div>

@@ -54,13 +54,15 @@
     border-radius: 7px;
     cursor: pointer;
 }
-.item-image {
+.item-image-section {
     width: 100px;
-    height: 5vh;
     text-align: center;
     line-height: 5vh;
-    background: rgb(221, 221, 221);
     font-size: 15px;
+}
+
+.item-image {
+
 }
 
 .item-title {
@@ -121,4 +123,10 @@
 .carousel-control-next,
 .carousel-control-prev {
     filter: invert(50%);
+}
+
+/* In case the search result is empty */
+.search-info {
+    font-size: 1.75em;
+    color:  var(--text-grey);
 }

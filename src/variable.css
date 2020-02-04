@@ -4,6 +4,7 @@
     --text-heading: black; 
     --text-plain: black;
     --text-light: white;
+    --text-grey: grey;
     --input-focus: rgb(255, 196, 0);
     --nav-link-inactive: black;
     --nav-link-active: rgb(255, 196, 0);
