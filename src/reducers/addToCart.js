@@ -1,9 +1,7 @@
 const addToCartReducer = (state= null, action) => {
     switch (action.type) {
-        case "INCREMENT":
+        case "addItem":
             return state = action.payload
-        case "DECREMENT":
-            return state - 1
         default:
             return state
     }
