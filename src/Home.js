@@ -6,6 +6,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import SVG from "react-inlinesvg";
+import { useSelector, useDispatch, connect } from "react-redux";
+import { increment, decrement } from "./actions";
 
 class Home extends Component {
     constructor(props) {
@@ -224,7 +226,7 @@ class Home extends Component {
                                     <div className="pb-2 popup-item-desc">{this.state.selected_item.description}</div>
                                     <div className="d-flex flex-row align-items-center justify-content-between popup-price-add-section">
                                         <div className="item-price">Rs.{this.state.selected_item.price}</div>
-                                        <div onClick={() => this.addToCart(this.state.selected_item)}>
+                                        <div onClick={() => this.props.increment(this.state.selected_item)}>
                                             <button className="px-4 py-2 popup-add-btn">Add</button>
                                         </div>
                                     </div>
@@ -325,46 +327,27 @@ class Home extends Component {
                                         })
                                     }
                                 </div>
-                                {/*{
 
-                                    Object.entries(this.state.cat_json).map(category => {
-                                        return (category[1] && <div className="returnDiv">
-                                            // <div className="d-flex flex-row item-category">
-                                            //     <div className="item-category-text">{category[0]}</div>
-                                            // </div>
-                                            <div className="d-flex flex-row items-list-display">
-
-                                                {
-                                                    this.state.homeItems.map(homeItem => {
-                                                        if(homeItem.category === category[0]) {
-                                                            return <div className="d-flex flex-column align-items-center justify-content-center ml-5 mb-4 px-4 pt-4 py-0 item-box" onClick={() => this.toggleOn(homeItem)}>
-                                                                <div className="item-image-section">
-                                                                    <img className="item-image" src={homeItem.img[1]} width="100px" height="100px" />
-                                                                </div>
-                                                                <div className="pt-2 item-title">{homeItem.title}</div>
-                                                                <div
-                                                                    className="d-flex flex-row align-items-center justify-content-between pt-2 pb-3 price-add-section">
-                                                                    <div className="price-text">Rs.{homeItem.price}</div>
-                                                                    <div className="add-btn-section">
-                                                                        <button className="px-2 py-1 add-btn">Add</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div> ;
-                                                        }
-                                                    })
-                                                }
-                                            </div>
-                                        </div>);
-                                    })
-                                }*/}
                             </div> }
                         </div>
                     </div>
                 </div>
             </div>
         );
-
+9
     }
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+    return {
+        addToCart: state.addToCart
+    }
+}
+
+const mapDispatchToProps = () => {
+    return {
+        increment,
+        }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps())(Home);
