@@ -10,3 +10,10 @@ export const clearItems = () => {
         type: "clearItems",
     }
 }
+
+export const setRetrievedState = (val) => {
+    return {
+        type: "setRetrievedState",
+        payload: val
+    }
+}

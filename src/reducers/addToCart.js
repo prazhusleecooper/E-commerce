@@ -16,11 +16,17 @@ const addToCartReducer = (state= [], action) => {
                     state = [...state, action.payload];
                 }
             }
-            return state
+            window.localStorage.setItem("cartItems", JSON.stringify(state));
+            return state;
+
         case "clearItems":
             return state = [];
+
+        case "setRetrievedState":
+            return state = action.payload;
+
         default:
-            return state
+            return state;
     }
 
 }
