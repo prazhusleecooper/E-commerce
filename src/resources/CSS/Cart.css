@@ -8,6 +8,10 @@
     cursor: pointer;
 }
 
+button, button:focus {
+    outline: none;
+}
+
 /* Search bar */
 .search-bar-input {
     height: 4vh;
@@ -136,6 +140,7 @@ td {
     height: 20px;
     background-image: url("https://img.icons8.com/flat_round/20/000000/delete-sign.png");
     background-repeat: no-repeat;
+    /*display: block;*/
 }
 
 @-moz-document url-prefix() {

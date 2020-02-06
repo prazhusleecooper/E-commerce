@@ -25,6 +25,17 @@ const addToCartReducer = (state= [], action) => {
         case "setRetrievedState":
             return state = action.payload;
 
+        case "removeItem":
+            state.map((stateItem, index = 0) => {
+                if(stateItem.uid === action.payload.uid) {
+                    console.log("STATE BEFORE REMOVING:", state);
+                    state.splice(index,1);
+                    console.log("STATE AFTER REMOVING:", state);
+                }
+            } );
+            window.localStorage.setItem("cartItems", JSON.stringify(state));
+            return state;
+
         default:
             return state;
     }

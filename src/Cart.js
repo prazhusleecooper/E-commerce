@@ -5,7 +5,7 @@ import SVG from 'react-inlinesvg';
 import { MDBContainer, MDBModal, MDBModalBody } from 'mdbreact';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from "react-redux";
-import { addItem, setRetrievedState } from "./actions";
+import { addItem, setRetrievedState, removeItem } from "./actions";
 
 
 class Cart extends Component {
@@ -27,19 +27,28 @@ class Cart extends Component {
 
      cartInit = () => {
          console.log("CART INIT after render");
+         console.log("hasw own:::", window.localStorage.hasOwnProperty("cartItems"));
+         // console.log("LS   ", window.localStorage.getItem("cartItems"));
+         // console.log("LS LENGTH  ", window.localStorage.getItem("cartItems").length);
+
          let checkoutSum = 0;
          if(this.props.addedItems.length <= 0 ) {
-             if(window.localStorage.getItem("cartItems") !== null) {
-                 this.props.setRetrievedState(JSON.parse(window.localStorage.getItem("cartItems")));
-                 let items = JSON.parse(window.localStorage.getItem("cartItems"));
-                 items.map(item => {
-                    checkoutSum += item.total_price;
-                 });
-                 this.setState({
-                     cartItems:  items
-                 });
-                 this.state.sum = checkoutSum;
-                 console.log(">STATE change::", this.state.sum);
+             if(window.localStorage.hasOwnProperty("cartItems")){
+                 if(window.localStorage.getItem("cartItems").length > 2) {
+                    this.props.setRetrievedState(JSON.parse(window.localStorage.getItem("cartItems")));
+                    let items = JSON.parse(window.localStorage.getItem("cartItems"));
+                    items.map(item => {
+                        checkoutSum += item.total_price;
+                    });
+                    this.setState({
+                        cartItems:  items
+                    });
+                    this.state.sum = checkoutSum;
+                    console.log(">STATE change::", this.state.sum);
+                    if(this.state.sum === 0) {
+                        this.setState({cartItems : []});
+                    }
+                 }
              }
 
          } else {
@@ -175,6 +184,7 @@ class Cart extends Component {
                     {/*</div>*/}
                 </div>
             </div>
+                {console.log("CART ITEMS ARE :::::", this.state.cartItems)}
             </div>
         );
     }
@@ -190,6 +200,7 @@ const mapDispatchToProps = () => {
     return {
         addItem,
         setRetrievedState,
+        removeItem,
     }
 }
 

@@ -17,3 +17,11 @@ export const setRetrievedState = (val) => {
         payload: val
     }
 }
+
+export const removeItem = (val) => {
+    return {
+        type: "removeItem",
+        payload: val
+    }
+}
+
