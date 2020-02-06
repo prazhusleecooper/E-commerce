@@ -27,14 +27,10 @@ class Cart extends Component {
 
      cartInit = () => {
          console.log("CART INIT after render");
-         console.log("hasw own:::", window.localStorage.hasOwnProperty("cartItems"));
-         // console.log("LS   ", window.localStorage.getItem("cartItems"));
-         // console.log("LS LENGTH  ", window.localStorage.getItem("cartItems").length);
-
          let checkoutSum = 0;
          if(this.props.addedItems.length <= 0 ) {
-             if(window.localStorage.hasOwnProperty("cartItems")){
-                 if(window.localStorage.getItem("cartItems").length > 2) {
+             // if(window.localStorage.hasOwnProperty("cartItems")){
+                 if(window.localStorage.hasOwnProperty("cartItems") && window.localStorage.getItem("cartItems").length > 2) {
                     this.props.setRetrievedState(JSON.parse(window.localStorage.getItem("cartItems")));
                     let items = JSON.parse(window.localStorage.getItem("cartItems"));
                     items.map(item => {
@@ -49,7 +45,7 @@ class Cart extends Component {
                         this.setState({cartItems : []});
                     }
                  }
-             }
+             // }
 
          } else {
              this.state.cartItems.map(item => {
@@ -63,11 +59,17 @@ class Cart extends Component {
 
      }
 
-     findSum = () => {
-        this.setState({
-            sum: 999
-        })
-     }
+    removeCartItem = (item) => {
+        let index = this.state.cartItems.indexOf(item);
+        if(index !== -1) {
+            let tempArr = this.state.cartItems;
+            tempArr.splice(index, 1);
+            this.setState({
+                cartItems: tempArr
+            })
+            this.props.removeItem(item);
+        }
+    }
 
     render (){
         this.cartInit();
@@ -148,7 +150,7 @@ class Cart extends Component {
                                                 <td className="td-qty">{cartItem.quantity}</td>
                                                 <td className="td-price">{cartItem.total_price}</td>
                                                 <td className="td-rm">
-                                                    <button className="remove-btn"></button>
+                                                    <button className="remove-btn" onClick={() => this.removeCartItem(cartItem)}></button>
                                                 </td>
                                             </tr>
                                         );
