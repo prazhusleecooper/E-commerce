@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Home.css';
+import './resources/CSS/Home.css';
 import {MDBContainer, MDBModal, MDBModalBody, MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView} from 'mdbreact';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/css/bootstrap.css";

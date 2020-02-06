@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './HeaderNav.css';
+import './resources/CSS/HeaderNav.css';
 import SVG from "react-inlinesvg";
 import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
