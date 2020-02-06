@@ -4,3 +4,9 @@ export const addItem = (val) => {
         payload: val
     }
 }
+
+export const clearItems = () => {
+    return {
+        type: "clearItems",
+    }
+}

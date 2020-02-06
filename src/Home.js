@@ -7,14 +7,14 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import SVG from "react-inlinesvg";
 import { connect } from "react-redux";
-import { addItem } from "./actions";
+import { addItem, clearItems } from "./actions";
 import home_items_data from '../src/resources/JSON/home_items';
 import categories_data from '../src/resources/JSON/categories';
 
 class Home extends Component {
     constructor(props) {
         super(props);
-        console.log("HOME ITeMS DATA::", home_items_data);
+        // this.props.clearItems();
         this.state = {
             // cat_json: {             /* item categories with checkbox condition */
             //     "Fruits": true,
@@ -79,8 +79,8 @@ class Home extends Component {
             //         "category": "Appliances"
             //     }
             // ],
-            cat_json: categories_data,
-            homeItems: home_items_data,
+            cat_json: categories_data,      /* categories.json data */
+            homeItems: home_items_data,     /* home_items.json data */
 
             modal: false,           /* popup modal - MDBReact modal */
             selected_item: {        /* currently selected item - displayed in the popup modal */
@@ -161,6 +161,10 @@ class Home extends Component {
 
     }
 
+    addItemToCart = () => {
+        toast.warn("Item has been added to your Cart!");
+        this.props.addItem(this.state.selected_item);
+    }
 
     render() {
         return (
@@ -232,7 +236,7 @@ class Home extends Component {
                                     <div className="pb-2 popup-item-desc">{this.state.selected_item.description}</div>
                                     <div className="d-flex flex-row align-items-center justify-content-between popup-price-add-section">
                                         <div className="item-price">Rs.{this.state.selected_item.price}</div>
-                                        <div onClick={() => this.props.addItem(this.state.selected_item)}>
+                                        <div onClick={() => this.addItemToCart()}>
                                             <button className="px-4 py-2 popup-add-btn">Add</button>
                                         </div>
                                     </div>
@@ -346,14 +350,15 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        addToCart: state.addToCart
+        addedItems: state.addedItems
     }
 }
 
 const mapDispatchToProps = () => {
     return {
         addItem,
-        }
+        clearItems,
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps())(Home);

@@ -1,43 +1,109 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import './Cart.css';
 import SVG from 'react-inlinesvg';
 // import Modal from "react-bootstrap/Modal";
 import { MDBContainer, MDBModal, MDBModalBody } from 'mdbreact';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from "react-redux";
+import { addItem } from "./actions";
 
 
 class Cart extends Component {
     constructor(props) {
         super(props);
-        console.log("CART PAGE::: ITEM ADDED::::", this.props.addToCart);
+        console.log("CART pAGE REDUX DATA:::", this.props.addedItems);
         this.state = {
+            cartItems: [],
             closeSvg: '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="0.75em" viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve"><g><g><path d="M300.188,246L484.14,62.04c5.06-5.064,7.852-11.82,7.86-19.024c0-7.208-2.792-13.972-7.86-19.028L468.02,7.872    c-5.068-5.076-11.824-7.856-19.036-7.856c-7.2,0-13.956,2.78-19.024,7.856L246.008,191.82L62.048,7.872    c-5.06-5.076-11.82-7.856-19.028-7.856c-7.2,0-13.96,2.78-19.02,7.856L7.872,23.988c-10.496,10.496-10.496,27.568,0,38.052    L191.828,246L7.872,429.952c-5.064,5.072-7.852,11.828-7.852,19.032c0,7.204,2.788,13.96,7.852,19.028l16.124,16.116    c5.06,5.072,11.824,7.856,19.02,7.856c7.208,0,13.968-2.784,19.028-7.856l183.96-183.952l183.952,183.952    c5.068,5.072,11.824,7.856,19.024,7.856h0.008c7.204,0,13.96-2.784,19.028-7.856l16.12-16.116    c5.06-5.064,7.852-11.824,7.852-19.028c0-7.204-2.792-13.96-7.852-19.028L300.188,246z"/></g></g>',
             empty: false,
-            modal: false
+            modal: false,
+            itemAdded: false
         }
-
-        this.toggle = () => {
+        // this.pushToCart();
+    }
+        toggle = () => {
             this.setState( {
                 modal: !this.state.modal
             })
-        }
-    }
+        };
+
+        // pushToCart = () => {
+        //     console.log("pushToCart()");
+        //     if(window.localStorage.getItem("cartItems") === null) {
+        //         console.log("LOCAL STORE NULL");
+        //         let tempArray = [];
+        //         if(this.props.addedItems !== null) {
+        //             let addedItem = this.props.addedItems;
+        //             let tempItem = {
+        //                 "title": addedItem.title,
+        //                 "category": addedItem.category,
+        //                 "quantity": 1,
+        //                 "unit_price": addedItem.price,
+        //                 "total_price": addedItem.price,
+        //                 "uid": addedItem.uid
+        //             }
+        //             tempArray.push(tempItem);
+        //             this.props.addItem(null);
+        //             window.localStorage.setItem("cartItems", JSON.stringify(tempArray));
+        //             console.log("local storage cart::", JSON.parse(window.localStorage.getItem("cartItems")));
+        //             this.setState();
+        //         }
+        //     } else {
+        //         console.log("LOCAL STORE NOT  NULL");
+        //
+        //         if (this.props.addedItems !== null) {
+        //             let addedItem = this.props.addedItems;
+        //         let localStorageItems = JSON.parse(window.localStorage.getItem("cartItems"));
+        //         console.log("NOT EMPTY:::", localStorageItems);
+        //         localStorageItems.map(item => {
+        //             if (item.uid === addedItem.uid) {
+        //                 console.log("ITEM Uid::",item.uid);
+        //                 console.log("ADDED_ITEM Uid::",addedItem.uid);
+        //                 item.quality = item.quantity + 1;
+        //                 item.total_price = item.quality * item.price;
+        //                 this.props.addItem(null);
+        //                 this.setState({
+        //                     itemAdded: true
+        //                 });
+        //                 console.log("STATE :::", this.state.itemAdded);
+        //             }
+        //         });
+        //         if (this.state.itemAdded == false) {
+        //             console.log("STATE :::", this.state.itemAdded);
+        //
+        //             let tempItem = {
+        //                 "title": addedItem.title,
+        //                 "category": addedItem.category,
+        //                 "quantity": 1,
+        //                 "unit_price": addedItem.price,
+        //                 "total_price": addedItem.price,
+        //                 "uid": addedItem.uid
+        //             }
+        //             localStorageItems.push(tempItem);
+        //             this.props.addItem(null);
+        //         }
+        //         window.localStorage.setItem("cartItems", JSON.stringify(localStorageItems));
+        //      }
+        //         this.setState({
+        //             itemAdded: false
+        //         });
+        //         console.log("STATE :::", this.state.itemAdded);
+        //
+        //     }
+        // };
 
     render (){
-
         return (
             <div className="MidSection">
             <div className="CartSection">
                 {/* MDB modal popup */}
                 <MDBContainer>
                     <MDBModal isOpen={this.state.modal} toggle={this.toggle} centered>
-                        {/*<MDBModalHeader toggle={this.toggle}></MDBModalHeader>*/}
                         <MDBModalBody >
                             <div className="d-flex flex-column">
                                 <div className="d-flex flex-row align-items-center justify-content-between">
                                     <div className="popup-title">ADD ITEM</div>
-                                    <div onClick={this.toggle} className="close-svg-section"><SVG src={this.state.closeSvg} /></div>
+                                    <SVG onClick={this.toggle} class="close-svg" src={this.state.closeSvg} />
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-center pt-4">
                                     <input className="p-2 popup-input" placeholder="Item Name" />
@@ -53,10 +119,6 @@ class Cart extends Component {
                                 </div>
                             </div>
                         </MDBModalBody>
-                        {/*<MDBModalFooter>*/}
-                        {/*    <MDBBtn color="secondary" onClick={this.toggle}>Close</MDBBtn>*/}
-                        {/*    <MDBBtn color="primary">Save changes</MDBBtn>*/}
-                        {/*</MDBModalFooter>*/}
                     </MDBModal>
                 </MDBContainer>
 
@@ -73,10 +135,10 @@ class Cart extends Component {
 
                     {/*  Checking if the cart items are empty */}
                     {/*  displaying alert message instead of table  */}
-                    { this.state.empty && <div className="cart-empty-text">Cart is empty!</div> }
+                    { this.state.cartItems.length === 0 && <div className="d-flex flex-row align-items-center justify-content-center cart-empty-text py-4">Your Cart is empty!</div> }
 
                     {/*  displaying the table  */}
-                    { !this.state.empty &&
+                    { this.state.cartItems.length !== 0 &&
                     <div className="mt-4 CartItemTable">
                         <table className="item-table-header">
                             <thead>
@@ -91,14 +153,14 @@ class Cart extends Component {
                         <div className="item-table-section">
                             <table className="item-table">
                                 <tbody>
-                                <tr>
+                                {/*<tr>
                                     <td className="td-name">a</td>
                                     <td className="td-qty">a</td>
                                     <td className="td-price">a</td>
                                     <td className="td-rm">
                                         <button className="remove-btn"></button>
                                     </td>
-                                </tr>
+                                </tr>*/}
                                 {
                                     this.state.cartItems.map(cartItem => {
                                         return (
@@ -131,7 +193,7 @@ class Cart extends Component {
                     }
 
                     <div className="d-flex flex-row align-items-center justify-content-center checkout-btn-section">
-                        <button className="px-4 py-1 checkout-btn">Checkout</button>
+                        {this.state.cartItems.length !== 0 && <button className="px-4 py-1 checkout-btn">Checkout</button>}
                     </div>
                     {/*<div className="d-flex flex-row align-items-center justify-content-center"> /!* In case that the cart is empty *!/*/}
                     {/*  Your cart is empty*/}
@@ -148,8 +210,15 @@ class Cart extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        addToCart: state.addToCart
+        addedItems: state.addedItems
     }
 }
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = () => {
+    return {
+        addItem,
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps())(Cart);

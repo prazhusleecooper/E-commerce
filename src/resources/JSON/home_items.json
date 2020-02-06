@@ -5,7 +5,9 @@
                     "price": "50",
                     "uid": 1,
                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-                    "category": "Fruits"
+                    "category": "Fruits",
+                    "quantity": 1,
+                    "total_price": 50
                 },
                 {
                     "title": "Orange",
@@ -13,7 +15,9 @@
                     "price": "40",
                     "uid": 2,
                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-                    "category": "Fruits"
+                    "category": "Fruits",
+                    "quantity": 1,
+                    "total_price": 40
                 },
                 {
                     "title": "Banana",
@@ -21,7 +25,9 @@
                     "price": "20",
                     "uid": 3,
                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-                    "category": "Fruits"
+                    "category": "Fruits",
+                    "quantity": 1,
+                    "total_price": 20
                 },
                 {
                     "title": "Potato",
@@ -29,7 +35,9 @@
                     "price": "80",
                     "uid": 4,
                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-                    "category": "Vegetables"
+                    "category": "Vegetables",
+                    "quantity": 1,
+                    "total_price": 80
                 },
                 {
                     "title": "Tomato",
@@ -37,7 +45,10 @@
                     "price": "75",
                     "uid": 5,
                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-                    "category": "Vegetables"
+                    "category": "Vegetables",
+                    "quantity": 1,
+                    "total_price": 75
+
                 },
                 {
                     "title": "TV",
@@ -45,7 +56,9 @@
                     "price": "45000",
                     "uid": 6,
                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-                    "category": "Appliances"
+                    "category": "Appliances",
+                    "quantity": 1,
+                    "total_price": 45000
                 },
                 {
                     "title": "Laptop",
@@ -53,6 +66,8 @@
                     "price": "20000",
                     "uid": 7,
                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-                    "category": "Appliances"
+                    "category": "Appliances",
+                    "quantity": 1,
+                    "total_price": 20000
                 }
 ]

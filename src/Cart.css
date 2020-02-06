@@ -1,7 +1,11 @@
 @import "./variable.css";
 
-*{
+* {
     scrollbar-width: none;
+}
+
+.close-svg {
+    cursor: pointer;
 }
 
 /* Search bar */
@@ -48,8 +52,9 @@
 }
 
 .cart-empty-text {
-    font-size: 18px;
-    color: var(--text-heading);
+    font-size: 1.75em;
+    color:  var(--text-grey);
+
 }
 
 /* cart item table */
