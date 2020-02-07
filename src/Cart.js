@@ -16,7 +16,7 @@ class Cart extends Component {
             empty: false,
             modal: false,
             itemAdded: false,
-            sum: null
+            sum: null,
         }
     }
         toggle = () => {

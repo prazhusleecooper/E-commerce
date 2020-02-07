@@ -32,7 +32,6 @@ class Home extends Component {
             searchBarInput: false,  /* Search Bar Empty => false || Search Bar not Empty => true */
             searchItems: null
         };
-
     }
 
     /* toggle on popup */
@@ -66,12 +65,6 @@ class Home extends Component {
     }
 
     searchItem = (e) => {
-        // console.log("INPUT CHANGED");
-        // // let inputValue = this.inputValue;
-        // console.log("VALUE FOR INPUT FIELD::", e.target.value);
-        // if(e.target.value === "") {
-        //     console.log("VAlue is empty");
-        // }
         console.log("search bar triggered");
         if(e.target.value === "") {
             console.log("Search value is empty");
@@ -189,9 +182,9 @@ class Home extends Component {
                         </div>
                         <div className="d-flex flex-column align-items-start cat-list">
                             {
-                                Object.keys(this.state.cat_json).map(category => {
+                                Object.keys(this.state.cat_json).map((category)=> {
                                     return (<div className="pb-1 cat-name">
-                                                <input type="checkbox" name={category} value={category}  className="mr-2" defaultChecked={true} onChange={() => this.checkboxChange(category)} /> {category}
+                                                <input type="checkbox" name={category} value={category}  className="mr-2" defaultChecked={this.state.cat_json[category]} onChange={() => this.checkboxChange(category)} /> {category}
                                             </div>);
                                 })
                             }
@@ -240,6 +233,13 @@ class Home extends Component {
                                 }
                             </div> }
 
+                            {
+                                !Object.values(this.state.cat_json).includes(true) &&
+                                <div className="m-4 home-empty-text">
+                                    Please select one or more categories to view the products!
+                                </div>
+                            }
+
                             {/* Search items - searched Items will be rendered */}
                             { this.state.searchBarInput && <div className="d-flex flex-column align-items-start">
                                 <div className="d-flex flex-row item-category">
@@ -269,7 +269,6 @@ class Home extends Component {
                                                     </div>
                                                 </div>);
                                                 }
-
                                         })
                                     }
                                 </div>

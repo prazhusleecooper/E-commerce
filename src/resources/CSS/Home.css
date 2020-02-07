@@ -125,6 +125,12 @@
     filter: invert(50%);
 }
 
+/* If not category is checked */
+.home-empty-text {
+    font-size: 1.75em;
+    color:  var(--text-grey);
+}
+
 /* In case the search result is empty */
 .search-info {
     font-size: 1.75em;
