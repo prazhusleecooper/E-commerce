@@ -36,6 +36,24 @@ const addToCartReducer = (state= [], action) => {
             window.localStorage.setItem("cartItems", JSON.stringify(state));
             return state;
 
+        case "decreaseQty":
+        //    start here :)
+            state.map((item, index = 0) => {
+               if(item.uid === action.payload.uid) {
+                   let tempArr = state;
+                   if(tempArr[index].quantity === 1) {
+                       tempArr.splice(index, 1);
+                       state = tempArr;
+                   } else if(tempArr[index].quantity > 1) {
+                       tempArr[index].quantity -= 1;
+                       tempArr[index].total_price = tempArr[index].quantity * tempArr[index].price;
+                       state = tempArr;
+                   }
+               }
+            });
+            window.localStorage.setItem("cartItems", JSON.stringify(state));
+            return state;
+
         default:
             return state;
     }

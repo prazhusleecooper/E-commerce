@@ -4,6 +4,11 @@
     scrollbar-width: none;
 }
 
+.cart-section {
+    overflow-y: scroll;
+    height: 73vh;
+}
+
 .close-svg {
     cursor: pointer;
 }
@@ -123,6 +128,23 @@ td {
 .td-qty {
     width: 26.6%;
 }
+.qty-btn-dec {
+    border: 1px solid var(--qty-btn-border);
+    background-color:  var(--qty-btn-border);
+    font-size: 1.313em;
+    color: #F0F0F0;
+    padding-left: 11px;
+    padding-right: 11px;
+}
+
+.qty-btn-inc {
+    border: 1px solid var(--qty-btn-border);
+    background-color:  var(--qty-btn-border);
+    font-size: 1.313em;
+    color: #F0F0F0;
+}
+
+
 .td-price {
     width: 26.6%;
 }

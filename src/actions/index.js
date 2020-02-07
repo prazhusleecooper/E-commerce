@@ -25,3 +25,10 @@ export const removeItem = (val) => {
     }
 }
 
+export const decreaseQty = (val) => {
+    return {
+        type: "decreaseQty",
+        payload: val
+    }
+}
+

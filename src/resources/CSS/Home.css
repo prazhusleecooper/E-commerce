@@ -54,6 +54,11 @@
     border-radius: 7px;
     cursor: pointer;
 }
+
+.info-svg-section {
+    width: 100%;
+}
+
 .item-image-section {
     width: 100px;
     text-align: center;

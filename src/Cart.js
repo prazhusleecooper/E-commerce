@@ -5,7 +5,7 @@ import SVG from 'react-inlinesvg';
 import { MDBContainer, MDBModal, MDBModalBody } from 'mdbreact';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from "react-redux";
-import { addItem, setRetrievedState, removeItem } from "./actions";
+import { addItem, setRetrievedState, removeItem, decreaseQty } from "./actions";
 
 
 class Cart extends Component {
@@ -16,7 +16,7 @@ class Cart extends Component {
             empty: false,
             modal: false,
             itemAdded: false,
-            sum: null,
+            sum: null
         }
     }
         toggle = () => {
@@ -70,6 +70,32 @@ class Cart extends Component {
             this.props.removeItem(item);
         }
     }
+
+    increaseQty = (item) => {
+         let index = this.state.cartItems.indexOf(item);
+         console.log("THE INDEX IS::", index);
+         if(index != -1) {
+             this.props.addItem(item);
+             this.setState({
+                 cartItems: this.props.addedItems
+             })
+         }
+
+    };
+
+    decreaseQty = (item) => {
+         console.log("THE ITEM TO BE REDUCED IS:::", item);
+         let index = this.state.cartItems.indexOf(item);
+         console.log("THE INDEX IS::", index);
+         console.log("ITEM QTY IS::", item.quantity);
+         console.log("state QTY IS::", this.state.cartItems[index].quantity);
+         if(index != -1) {
+             this.props.decreaseQty(item);
+             this.setState({
+                 cartItems: this.props.addedItems
+             })
+         }
+     };
 
     render (){
         this.cartInit();
@@ -147,7 +173,11 @@ class Cart extends Component {
                                         return (
                                             <tr>
                                                 <td className="td-name">{cartItem.title}</td>
-                                                <td className="td-qty">{cartItem.quantity}</td>
+                                                <td className="td-qty">
+                                                    <button className="mr-3 qty-btn-dec" onClick={() => this.decreaseQty(cartItem)}>-</button>
+                                                        {cartItem.quantity}
+                                                    <button className="ml-3 qty-btn-inc" onClick={() => this.increaseQty(cartItem)}>+</button>
+                                                </td>
                                                 <td className="td-price">{cartItem.total_price}</td>
                                                 <td className="td-rm">
                                                     <button className="remove-btn" onClick={() => this.removeCartItem(cartItem)}></button>
@@ -186,7 +216,7 @@ class Cart extends Component {
                     {/*</div>*/}
                 </div>
             </div>
-                {console.log("CART ITEMS ARE :::::", this.state.cartItems)}
+                {console.log("END OF REnDER")}
             </div>
         );
     }
@@ -203,6 +233,7 @@ const mapDispatchToProps = () => {
         addItem,
         setRetrievedState,
         removeItem,
+        decreaseQty,
     }
 }
 
