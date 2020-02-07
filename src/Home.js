@@ -79,7 +79,7 @@ class Home extends Component {
                 searchBarInput: true
             });
             let searchResults = this.state.homeItems.filter( function (homeItem) {
-                if(homeItem.title.toUpperCase().includes(e.target.value.toUpperCase()) || homeItem.category.toUpperCase().includes(e.target.value.toUpperCase()) || homeItem.description.toUpperCase().includes(e.target.value.toUpperCase())) {
+                if(homeItem.title.toUpperCase().includes(e.target.value.toUpperCase()) || homeItem.category.toUpperCase().includes(e.target.value.toUpperCase())) {
                     return homeItem;
                 }
             })
@@ -222,7 +222,7 @@ class Home extends Component {
                                                         if(homeItem.category === category[0]) {
                                                             return <div className="d-flex flex-column align-items-center justify-content-center ml-5 mb-4 px-4 pt-3 item-box">
                                                                 <div className="d-flex flex-row align-items-center justify-content-end pb-2 info-svg-section" onClick={() => this.toggleOn(homeItem)}>
-                                                                    <SVG src={this.state.infoSvg}/>
+                                                                    <SVG src={this.state.infoSvg} className="info-svg" />
                                                                 </div>
                                                                 <div className="item-image-section">
                                                                     <img className="item-image" src={homeItem.img[1]} width="100px" height="100px" />

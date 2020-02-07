@@ -52,11 +52,14 @@
 .item-box {
     border: 1px solid var(--border);
     border-radius: 7px;
-    cursor: pointer;
 }
 
 .info-svg-section {
     width: 100%;
+}
+
+.info-svg {
+    cursor: pointer;
 }
 
 .item-image-section {
