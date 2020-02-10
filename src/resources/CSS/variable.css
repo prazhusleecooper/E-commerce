@@ -1,7 +1,8 @@
 :root{
     --button-bg: red;
     --border: rgb(206, 206, 206);
-    --text-heading: black; 
+    --text-heading: black;
+    --text-heading-secondary: rgb(255, 196, 0);
     --text-plain: black;
     --text-light: white;
     --text-grey: grey;
@@ -10,4 +11,14 @@
     --nav-link-active: rgb(255, 196, 0);
     --popup-input-bg: rgb(246, 246, 246);
     --qty-btn-border: #A5A5A5;
+}
+
+@font-face {
+    font-family: 'Cairo';
+    src: local('Cairo'), url(../fonts/Cairo/Cairo-Regular.ttf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Cairo-Bold';
+    src: local('Cairo-Bold'), url(../fonts/Cairo/Cairo-Bold.ttf) format('opentype');
 }

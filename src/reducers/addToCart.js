@@ -4,13 +4,14 @@ const addToCartReducer = (state= [], action) => {
             let presence = false;
             if(state.length === 0) {
                 state = [...state, action.payload];
-            } else if(state.length !=0) {
+            } else if(state.length !== 0) {
                 state.map(item => {
                     if(item.uid === action.payload.uid) {
                         presence = true;
-                        item.quantity = item.quantity + 1
+                        item.quantity += 1;
                         item.total_price = item.quantity * item.price;
                     }
+                    return '';
                 });
                 if(presence === false) {
                     state = [...state, action.payload];
@@ -32,6 +33,7 @@ const addToCartReducer = (state= [], action) => {
                     state.splice(index,1);
                     console.log("STATE AFTER REMOVING:", state);
                 }
+                return '';
             } );
             window.localStorage.setItem("cartItems", JSON.stringify(state));
             return state;
@@ -50,6 +52,7 @@ const addToCartReducer = (state= [], action) => {
                        state = tempArr;
                    }
                }
+               return '';
             });
             window.localStorage.setItem("cartItems", JSON.stringify(state));
             return state;
@@ -58,6 +61,6 @@ const addToCartReducer = (state= [], action) => {
             return state;
     }
 
-}
+};
 
 export default addToCartReducer;

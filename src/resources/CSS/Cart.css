@@ -33,7 +33,6 @@ button, button:focus {
     box-shadow: 0px 0px 5px var(--input-focus);
 }
 
-
 /* Cart Section */
 .CartSection {
     margin-left: 2vw;
@@ -43,9 +42,10 @@ button, button:focus {
 }
 
 .cart-items-text {
-    font-size: 18px var(--text-plain);
     text-decoration: underline;
     font-weight: bold;
+    font-size: 18px var(--text-plain);
+    font-family: Cairo;
 }
 
 .cart-add-btn {
@@ -54,16 +54,18 @@ button, button:focus {
     background: var(--button-bg);
     color: var(--text-light);
     font-size: 18px;
+    font-family: Cairo;
 }
 
 .cart-add-btn:focus, .add-btn {
     outline: none;
+    font-family: Cairo;
 }
 
 .cart-empty-text {
     font-size: 1.75em;
     color:  var(--text-grey);
-
+    font-family: Cairo;
 }
 
 /* cart item table */
@@ -79,6 +81,7 @@ button, button:focus {
     overflow-y: scroll;
     scrollbar-width: none;
 }
+
 .item-table-section::-webkit-scrollbar {
     width: 0px;
 }
@@ -95,10 +98,11 @@ td {
     padding-bottom: 0.5rem;
     border-top: 3px solid white ;
     border-bottom: 8px solid white;
+    vertical-align: middle;
     text-align: center;
     background: #f0f0f0;
     font-weight: bold;
-    vertical-align: middle;
+    font-family: Cairo;
 }
 
 .table-header {
@@ -107,17 +111,21 @@ td {
     text-align: center;
     background: #a5a5a5;
     border-bottom: 10px solid white;
+    font-family: Cairo;
 }
 
 .th-name {
     width: 26.6%;
 }
+
 .th-qty {
     width: 26.6%;
 }
+
 .th-price {
     width: 26.6%;
 }
+
 .th-rm {
     width: 20%;
 }
@@ -125,29 +133,33 @@ td {
 .td-name {
     width: 26.6%;
 }
+
 .td-qty {
     width: 26.6%;
 }
+
 .qty-btn-dec {
     border: 1px solid var(--qty-btn-border);
     background-color:  var(--qty-btn-border);
-    font-size: 1.313em;
     color: #F0F0F0;
     padding-left: 11px;
     padding-right: 11px;
+    font-size: 1.313em;
+    font-family: Cairo;
 }
 
 .qty-btn-inc {
     border: 1px solid var(--qty-btn-border);
     background-color:  var(--qty-btn-border);
-    font-size: 1.313em;
     color: #F0F0F0;
+    font-size: 1.313em;
+    font-family: Cairo;
 }
-
 
 .td-price {
     width: 26.6%;
 }
+
 .td-rm {
     width: 20%;
 }
@@ -183,6 +195,7 @@ td {
     background: var(--button-bg);
     color: var(--text-light);
     font-size: 18px;
+    font-family: Cairo;
 }
 
 .checkout-btn:focus, .add-btn {
@@ -194,6 +207,7 @@ td {
     font-weight: bold;
     text-decoration: underline;
     color: var(--text-heading);
+    font-family: Cairo;
 }
 
 .close-svg-section {
@@ -206,6 +220,7 @@ td {
     border-radius: 5px;
     height: 3em;
     background-color: var(--popup-input-bg);
+    font-family: Cairo;
 }
 
 .popup-add-btn {
@@ -214,6 +229,7 @@ td {
     background: var(--button-bg);
     color: var(--text-light);
     font-size: 18px;
+    font-family: Cairo;
 }
 
 .popup-add-btn:focus {

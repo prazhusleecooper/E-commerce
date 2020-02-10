@@ -17,6 +17,7 @@
     margin-left: 4%;
     color: var(--text-heading);
     font-size: 20px;
+    font-family: Cairo;
 }
 
 .nav-bar {
@@ -27,10 +28,11 @@
 }
 
 .nav-text-home, .nav-text-cart {
-    font-size: 20px;
     color: var(--text-plain);
     text-decoration: underline;
     cursor: pointer;
+    font-size: 20px;
+    font-family: Cairo;
 }
 
 .nav-link {

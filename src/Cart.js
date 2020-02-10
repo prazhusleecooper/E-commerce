@@ -35,11 +35,12 @@ class Cart extends Component {
                     let items = JSON.parse(window.localStorage.getItem("cartItems"));
                     items.map(item => {
                         checkoutSum += item.total_price;
+                        return '';
                     });
                     this.setState({
-                        cartItems:  items
+                        cartItems:  items,
+                        sum: checkoutSum
                     });
-                    this.state.sum = checkoutSum;
                     console.log(">STATE change::", this.state.sum);
                     if(this.state.sum === 0) {
                         this.setState({cartItems : []});
@@ -50,14 +51,16 @@ class Cart extends Component {
          } else {
              this.state.cartItems.map(item => {
                  checkoutSum += item.total_price;
+                 return '';
              });
              this.state.sum = checkoutSum
+
          }
          console.log("end of CART INIT after render:",this.state.cartItems);
          // this.findSum();
         console.log("THE sATE CURRENTLY IS :", this.state);
 
-     }
+     };
 
     removeCartItem = (item) => {
         let index = this.state.cartItems.indexOf(item);
@@ -66,15 +69,15 @@ class Cart extends Component {
             tempArr.splice(index, 1);
             this.setState({
                 cartItems: tempArr
-            })
+            });
             this.props.removeItem(item);
         }
-    }
+    };
 
     increaseQty = (item) => {
          let index = this.state.cartItems.indexOf(item);
          console.log("THE INDEX IS::", index);
-         if(index != -1) {
+         if(index !== -1) {
              this.props.addItem(item);
              this.setState({
                  cartItems: this.props.addedItems
@@ -89,7 +92,7 @@ class Cart extends Component {
          console.log("THE INDEX IS::", index);
          console.log("ITEM QTY IS::", item.quantity);
          console.log("state QTY IS::", this.state.cartItems[index].quantity);
-         if(index != -1) {
+         if(index !== -1) {
              this.props.decreaseQty(item);
              this.setState({
                  cartItems: this.props.addedItems
@@ -169,9 +172,9 @@ class Cart extends Component {
                                     </td>
                                 </tr>*/}
                                 {
-                                    this.state.cartItems.map(cartItem => {
+                                    this.state.cartItems.map((cartItem, key=0) => {
                                         return (
-                                            <tr>
+                                            <tr key={key}>
                                                 <td className="td-name">{cartItem.title}</td>
                                                 <td className="td-qty">
                                                     <button className="mr-3 qty-btn-dec" onClick={() => this.decreaseQty(cartItem)}>-</button>
@@ -180,7 +183,7 @@ class Cart extends Component {
                                                 </td>
                                                 <td className="td-price">{cartItem.total_price}</td>
                                                 <td className="td-rm">
-                                                    <button className="remove-btn" onClick={() => this.removeCartItem(cartItem)}></button>
+                                                    <button className="remove-btn" onClick={() => this.removeCartItem(cartItem)}/>
                                                 </td>
                                             </tr>
                                         );
@@ -192,12 +195,12 @@ class Cart extends Component {
                         <table className="item-table-header item-total-table">
                             <tbody>
                             <tr>
-                                <td className="td-total td-name"></td>
+                                <td className="td-total td-name" />
                                 <td className="td-total td-qty"> Total</td>
                                 <td className="td-total td-price">
                                     Rs. {this.state.sum}
                                 </td>
-                                <td className="td-total td-rm"></td>
+                                <td className="td-total td-rm" />
                             </tr>
                             </tbody>
                         </table>
@@ -226,7 +229,7 @@ const mapStateToProps = (state) => {
     return {
         addedItems: state.addedItems
     }
-}
+};
 
 const mapDispatchToProps = () => {
     return {
@@ -235,7 +238,7 @@ const mapDispatchToProps = () => {
         removeItem,
         decreaseQty,
     }
-}
+};
 
 
 export default connect(mapStateToProps, mapDispatchToProps())(Cart);

@@ -5,6 +5,7 @@
     margin-right: 2vw;
 }
 
+/* Categories section */
 .categories-pane {
     width: 15%;
     height: 70vh;
@@ -12,17 +13,22 @@
 }
 
 .cat-heading {
-    color: var(--text-heading);
+    color: var(--text-heading-secondary);
     font-size: 19px;
+    font-family: Cairo;
     text-decoration: underline;
 }
 
 .cat-name {
     color: var(--text-plain);
     font-size: 19px;
-
 }
 
+.cat-text {
+    font-family: Cairo;
+}
+
+/* Items section */
 .items-pane {
     margin-left: 1.5%;
     width: 85%;
@@ -43,6 +49,7 @@
 .item-category-text {
     color: var(--text-heading);
     font-size: 20px;
+    font-family: Cairo;
 }
 
 .items-list-display {
@@ -67,6 +74,8 @@
     text-align: center;
     line-height: 5vh;
     font-size: 15px;
+    font-family: Cairo;
+
 }
 
 .item-image {
@@ -76,6 +85,8 @@
 .item-title {
     font-size: 15px;
     color: var(--text-plain);
+    font-family: Cairo;
+
 }
 
 .price-add-section{
@@ -86,6 +97,7 @@
     font-size: 13.5px;
     color: var(--text-plain);
     width: 5.063em;
+    font-family: Cairo-Bold;
 }
 
 .add-btn {
@@ -94,6 +106,7 @@
     border-radius: 5px;
     color: var(--text-light);
     font-size: 13.5px;
+    font-family: Cairo;
 }
 
 /* Popup section */
@@ -110,12 +123,14 @@
     word-break: break-all;
     font-size: 1.75em;
     font-weight: 500;
+    font-family: Cairo;
 }
 
 .popup-item-desc {
     width: 100%;
     word-break: break-all;
     font-size: 1em;
+    font-family: Cairo;
 }
 
 .popup-price-add-section {
@@ -125,6 +140,11 @@
 .item-price {
     font-size: 1.313em;
     font-weight: 600;
+    font-family: Cairo;
+}
+
+.popup-add-btn {
+    font-family: Cairo;
 }
 
 /* carousel arrows color */
@@ -136,11 +156,23 @@
 /* If not category is checked */
 .home-empty-text {
     font-size: 1.75em;
+    font-family: Cairo;
     color:  var(--text-grey);
 }
 
 /* In case the search result is empty */
 .search-info {
     font-size: 1.75em;
+    font-family: Cairo;
     color:  var(--text-grey);
+}
+
+/* Search bar */
+.search-bar-input {
+    font-family: Cairo;
+}
+
+/* Checkbox */
+.check-box {
+    font-family: Cairo;
 }
