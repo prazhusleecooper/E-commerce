@@ -1,5 +1,9 @@
 @import "variable.css";
 
+* {
+    scrollbar-width: none;
+}
+
 .header-nav {
     margin-top: 2vh;
     margin-bottom: 3vh;

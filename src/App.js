@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Switch, Route } from "react-router-dom";
-import HeaderNav from './HeaderNav';
-import Home from './Home';
-import Cart from './Cart';
-import Footer from './Footer.js';
+import HeaderNav from './Components/HeaderNav';
+import Home from './Components/Home';
+import Cart from './Components/Cart';
+import Footer from './Components/Footer.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 

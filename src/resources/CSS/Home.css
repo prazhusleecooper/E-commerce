@@ -1,5 +1,9 @@
 @import "variable.css";
 
+* {
+    scrollbar-width: none;
+}
+
 .Home {
     margin-left: 2vw;
     margin-right: 2vw;

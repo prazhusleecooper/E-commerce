@@ -1,3 +1,4 @@
+/* Variable.css contains all the variables with values for the application */
 :root{
     --button-bg: red;
     --border: rgb(206, 206, 206);
@@ -13,11 +14,13 @@
     --qty-btn-border: #A5A5A5;
 }
 
+/* Cario-Regular font */
 @font-face {
     font-family: 'Cairo';
     src: local('Cairo'), url(../fonts/Cairo/Cairo-Regular.ttf) format('opentype');
 }
 
+/* Cairo-Bold font */
 @font-face {
     font-family: 'Cairo-Bold';
     src: local('Cairo-Bold'), url(../fonts/Cairo/Cairo-Bold.ttf) format('opentype');
