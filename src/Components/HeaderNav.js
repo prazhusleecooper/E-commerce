@@ -8,7 +8,29 @@ class HeaderNav extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            mobileMenu: false
         }
+    }
+
+    triggerHamburgerMenu = () => {
+        this.setState({
+           mobileMenu: !this.state.mobileMenu
+        });
+    };
+
+    //Rendering methods
+    renderHamburgerMenu = () => {
+        return (
+            <div className="menu-mob">
+                <div className="">
+                    <NavLink exact to="/home" className="nav-link-mob" activeClassName="nav-link-mob-active">Home</NavLink>
+                </div>
+                <hr className="mx-3 my-0 menu-hr"/>
+                <div className="" >
+                    <NavLink exact to="/cart" className="nav-link-mob" activeClassName="nav-link-mob-active " >Cart</NavLink>
+                </div>
+            </div>
+        );
     }
 
     render() {
@@ -26,14 +48,18 @@ class HeaderNav extends Component {
                     </div>
                     {/* Navigation link implemented using Router */}
                     <div className="d-flex align-items-center justify-content-end nav-bar">
-                        <div className="mr-3 nav-text-home">
-                            <NavLink exact to="/home" className="nav-link" activeClassName="nav-link-active">Home</NavLink>
+                        <div className="mr-3 nav-text-home" >
+                            <NavLink exact to="/home" className="nav-link" activeClassName="nav-link-active" onClick={() => this.triggerHamburgerMenu()}>Home</NavLink>
                         </div>
                         <div className="mr-5 nav-text-cart" >
-                            <NavLink exact to="/cart" className="nav-link" activeClassName="nav-link-active " >Cart</NavLink>
+                            <NavLink exact to="/cart" className="nav-link" activeClassName="nav-link-active " onClick={() => this.triggerHamburgerMenu()} >Cart</NavLink>
+                        </div>
+                        <div className="hamburger-menu" onClick={() => this.triggerHamburgerMenu()}>
+                            <SVG src='<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="2em" viewBox="0 0 469.333 469.333" style="enable-background:new 0 0 469.333 469.333;" xml:space="preserve" width="512px" height="512px" className=""><g><g><g><g><path d="M53.333,106.667H416c29.417,0,53.333-23.927,53.333-53.333S445.417,0,416,0H53.333C23.917,0,0,23.927,0,53.333     S23.917,106.667,53.333,106.667z" data-original="#000000" className="active-path" data-old_color="#000000" fill="#FFC400"/><path d="M416,181.333H53.333C23.917,181.333,0,205.26,0,234.667S23.917,288,53.333,288H416c29.417,0,53.333-23.927,53.333-53.333     S445.417,181.333,416,181.333z" data-original="#000000" className="active-path" data-old_color="#000000" fill="#FFC400"/><path d="M416,362.667H53.333C23.917,362.667,0,386.594,0,416s23.917,53.333,53.333,53.333H416     c29.417,0,53.333-23.927,53.333-53.333S445.417,362.667,416,362.667z" data-original="#000000" className="active-path" fill="#FFC400"/></g></g></g></g> </svg>'/>
                         </div>
                     </div>
                 </div>
+                { this.state.mobileMenu && this.renderHamburgerMenu() }
             </div>
         );
     }

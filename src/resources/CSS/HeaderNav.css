@@ -4,86 +4,317 @@
     scrollbar-width: none;
 }
 
-.header-nav {
-    margin-top: 2vh;
-    margin-bottom: 3vh;
-    margin-left: 2vw;
-    margin-right: 2vw;
+/* Desktop and larger screens */
+@media only screen and (min-width: 992px) {
+
+    .header-nav {
+        margin-top: 2vh;
+        margin-bottom: 3vh;
+        margin-left: 2vw;
+        margin-right: 2vw;
+    }
+
+    .logo-section {
+        width: 15%;
+        height: 10vh;
+        border: 1px solid var(--border);
+    }
+
+    .logo-text {
+        margin-left: 4%;
+        color: var(--text-heading);
+        font-size: 20px;
+        font-family: Cairo;
+    }
+
+    .nav-bar {
+        margin-left: 1.5%;
+        width: 85%;
+        height: 10vh;
+        border: 1px solid var(--border);
+    }
+
+    .nav-text-home, .nav-text-cart {
+        color: var(--text-plain);
+        text-decoration: underline;
+        cursor: pointer;
+        font-size: 20px;
+        font-family: Cairo;
+    }
+
+    .nav-link {
+        font-size: 20px;
+        color: var(--nav-link-inactive);
+        text-decoration: underline;
+        text-decoration-color: var(--nav-link-inactive);
+        cursor: pointer;
+    }
+
+    .nav-link:hover {
+        font-size: 20px;
+        color: var(--nav-link-inactive);
+        text-decoration: underline;
+        text-decoration-color: var(--nav-link-inactive);
+        cursor: pointer;
+    }
+
+    .nav-link:visited {
+        font-size: 20px;
+        color: var(--nav-link-inactive);
+        text-decoration: underline;
+        text-decoration-color: var(--nav-link-inactive);
+        cursor: pointer;
+    }
+
+    .nav-link-active {
+        font-size: 20px;
+        color: var(--nav-link-active);
+        text-decoration: underline;
+        text-decoration-color: var(--nav-link-active);
+        cursor: pointer;
+    }
+
+    .nav-link-active:hover {
+        font-size: 20px;
+        color: var(--nav-link-active);
+        text-decoration: underline;
+        text-decoration-color: var(--nav-link-active);
+        cursor: pointer;
+    }
+
+    .nav-link-active:visited {
+        font-size: 20px;
+        color: var(--nav-link-active);
+        text-decoration: underline;
+        text-decoration-color: var(--nav-link-active);
+        cursor: pointer;
+    }
+
+    .hamburger-menu, .menu-mob {
+        display: none;
+    }
+
 }
 
-.logo-section {
-    width: 15%;
-    height: 10vh;
-    border: 1px solid var(--border);
+/* tablets */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .header-nav {
+        margin-top: 2vh;
+        margin-bottom: 3vh;
+        margin-left: 2vw;
+        margin-right: 2vw;
+    }
+    .logo-section {
+        width: 35%;
+        height: 10vh;
+        border: 1px solid var(--border);
+    }
+    .logo-text {
+        margin-left: 4%;
+        color: var(--text-heading);
+        font-size: 20px;
+        font-family: Cairo;
+    }
+
+    .nav-bar {
+        margin-left: 1.5%;
+        width: 65%;
+        height: 10vh;
+        border: 1px solid var(--border);
+    }
+
+    .nav-text-home, .nav-text-cart {
+        color: var(--text-plain);
+        text-decoration: underline;
+        cursor: pointer;
+        font-size: 20px;
+        font-family: Cairo;
+    }
+
+    .nav-link {
+        font-size: 23px;
+        color: var(--nav-link-inactive);
+        text-decoration: underline;
+        text-decoration-color: var(--nav-link-inactive);
+        cursor: pointer;
+    }
+
+    .nav-link:hover {
+        font-size: 23px;
+        color: var(--nav-link-inactive);
+        text-decoration: underline;
+        text-decoration-color: var(--nav-link-inactive);
+        cursor: pointer;
+    }
+
+    .nav-link:visited {
+        font-size: 23px;
+        color: var(--nav-link-inactive);
+        text-decoration: underline;
+        text-decoration-color: var(--nav-link-inactive);
+        cursor: pointer;
+    }
+
+    .nav-link-active {
+        font-size: 23px;
+        color: var(--nav-link-active);
+        text-decoration: underline;
+        text-decoration-color: var(--nav-link-active);
+        cursor: pointer;
+    }
+
+    .nav-link-active:hover {
+        font-size: 23px;
+        color: var(--nav-link-active);
+        text-decoration: underline;
+        text-decoration-color: var(--nav-link-active);
+        cursor: pointer;
+    }
+
+    .nav-link-active:visited {
+        font-size: 23px;
+        color: var(--nav-link-active);
+        text-decoration: underline;
+        text-decoration-color: var(--nav-link-active);
+        cursor: pointer;
+    }
+
+    .hamburger-menu, .menu-mob {
+        display: none;
+    }
 }
 
-.logo-text {
-    margin-left: 4%;
-    color: var(--text-heading);
-    font-size: 20px;
-    font-family: Cairo;
+/* large phones */
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+    * {
+        overflow-y: auto;
+    }
+    .header-nav {
+        margin-top: 2vh;
+        margin-bottom: 3vh;
+        margin-left: 2vw;
+        margin-right: 2vw;
+    }
+    .logo-section {
+        width: 93%;
+        height: 10vh;
+        border: 1px solid var(--border);
+        padding: 7px;
+    }
+    .logo-text {
+        margin-left: 4%;
+        color: var(--text-heading);
+        font-size: 20px;
+        font-family: Cairo;
+    }
+
+    .nav-text-home, .nav-text-cart {
+        display: none;
+    }
+
+    .nav-bar {
+        display: none;
+        margin-left: 1.5%;
+        width: 7%;
+        height: 10vh;
+        /*border: 1px solid var(--border);*/
+    }
+
+    .hamburger-menu {
+        margin-right: 0.4em;
+    }
+
+    .menu-mob {
+
+        width: 100%;
+        /*background-color: blue;*/
+        border: 1px solid var(--nav-link-active);
+        margin-top: 1em;
+        /*padding: 2em;*/
+    }
+
+    .menu-hr {
+        border-top: 1px solid var(--nav-link-active);
+    }
+
+    .nav-link-mob {
+        display: block;
+        width: 100%;
+        padding: 1em;
+    }
+
+    .nav-link-mob, .nav-link-mob-active, .nav-link-mob:hover, .nav-link-mob-active:hover {
+        font-size: 20px;
+        font-family: Cairo;
+        color: var(--text-heading);
+        text-decoration: none;
+        outline: none;
+    }
+
 }
 
-.nav-bar {
-    margin-left: 1.5%;
-    width: 85%;
-    height: 10vh;
-    border: 1px solid var(--border);
-}
+/* phones */
+@media only screen and (max-width: 599px) {
+    * {
+        overflow-y: auto;
+    }
+    .header-nav {
+        margin: 2vh 2vw 3vh 2vw;
+    }
+    .logo-section {
+        width: 97%;
+        height: 10vh;
+        border: 1px solid var(--border);
+        padding: 7px;
+    }
+    .logo-text {
+        margin-left: 4%;
+        color: var(--text-heading);
+        font-size: 20px;
+        font-family: Cairo;
+    }
 
-.nav-text-home, .nav-text-cart {
-    color: var(--text-plain);
-    text-decoration: underline;
-    cursor: pointer;
-    font-size: 20px;
-    font-family: Cairo;
-}
+    .nav-text-home, .nav-text-cart {
+        display: none;
+    }
 
-.nav-link {
-    font-size: 20px;
-    color: var(--nav-link-inactive);
-    text-decoration: underline;
-    text-decoration-color: var(--nav-link-inactive);
-    cursor: pointer;
-}
+    .nav-bar {
+        display: none;
+        margin-left: 1.5%;
+        width: 13%;
+        height: 10vh;
+        /*border: 1px solid var(--border);*/
+    }
 
-.nav-link:hover {
-    font-size: 20px;
-    color: var(--nav-link-inactive);
-    text-decoration: underline;
-    text-decoration-color: var(--nav-link-inactive);
-    cursor: pointer;
-}
+    .hamburger-menu {
+        margin-right: 0.4em;
+    }
 
-.nav-link:visited {
-    font-size: 20px;
-    color: var(--nav-link-inactive);
-    text-decoration: underline;
-    text-decoration-color: var(--nav-link-inactive);
-    cursor: pointer;
-}
+    .menu-mob {
 
-.nav-link-active {
-    font-size: 20px;
-    color: var(--nav-link-active);
-    text-decoration: underline;
-    text-decoration-color: var(--nav-link-active);
-    cursor: pointer;
-}
+        width: 100%;
+        /*background-color: blue;*/
+        border: 1px solid var(--nav-link-active);
+        margin-top: 1em;
+        /*padding: 2em;*/
+    }
 
-.nav-link-active:hover {
-    font-size: 20px;
-    color: var(--nav-link-active);
-    text-decoration: underline;
-    text-decoration-color: var(--nav-link-active);
-    cursor: pointer;
-}
+    .menu-hr {
+        border-top: 1px solid var(--nav-link-active);
+    }
 
-.nav-link-active:visited {
-    font-size: 20px;
-    color: var(--nav-link-active);
-    text-decoration: underline;
-    text-decoration-color: var(--nav-link-active);
-    cursor: pointer;
-}
+    .nav-link-mob {
+        display: block;
+        width: 100%;
+        padding: 1em;
+    }
 
+    .nav-link-mob, .nav-link-mob-active, .nav-link-mob:hover, .nav-link-mob-active:hover {
+        font-size: 20px;
+        font-family: Cairo;
+        color: var(--text-heading);
+        text-decoration: none;
+        outline: none;
+    }
+
+}
