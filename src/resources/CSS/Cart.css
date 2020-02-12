@@ -30,7 +30,7 @@ button, button:focus {
 
 .search-bar-input:focus {
     outline: none;
-    box-shadow: 0px 0px 5px var(--input-focus);
+    box-shadow: 0 0 5px var(--input-focus);
 }
 
 /* Cart Section */
@@ -45,27 +45,27 @@ button, button:focus {
     text-decoration: underline;
     font-weight: bold;
     font-size: 18px var(--text-plain);
-    font-family: Cairo;
+    font-family: Cairo, sans-serif;
 }
 
 .cart-add-btn {
-    border: 0px;
+    border: 0;
     border-radius: 5px;
     background: var(--button-bg);
     color: var(--text-light);
     font-size: 18px;
-    font-family: Cairo;
+    font-family: Cairo, sans-serif;
 }
 
 .cart-add-btn:focus, .add-btn {
     outline: none;
-    font-family: Cairo;
+    font-family: Cairo, sans-serif;
 }
 
 .cart-empty-text {
     font-size: 1.75em;
     color:  var(--text-grey);
-    font-family: Cairo;
+    font-family: Cairo, sans-serif;
 }
 
 /* cart item table */
@@ -83,7 +83,7 @@ button, button:focus {
 }
 
 .item-table-section::-webkit-scrollbar {
-    width: 0px;
+    width: 0;
 }
 
 .item-table {
@@ -102,7 +102,7 @@ td {
     text-align: center;
     background: #f0f0f0;
     font-weight: bold;
-    font-family: Cairo;
+    font-family: Cairo, sans-serif;
 }
 
 .table-header {
@@ -111,7 +111,7 @@ td {
     text-align: center;
     background: #a5a5a5;
     border-bottom: 10px solid white;
-    font-family: Cairo;
+    font-family: Cairo, sans-serif;
 }
 
 .th-name {
@@ -145,7 +145,7 @@ td {
     padding-left: 11px;
     padding-right: 11px;
     font-size: 1.313em;
-    font-family: Cairo;
+    font-family: Cairo, sans-serif;
 }
 
 .qty-btn-inc {
@@ -153,7 +153,7 @@ td {
     background-color:  var(--qty-btn-border);
     color: #F0F0F0;
     font-size: 1.313em;
-    font-family: Cairo;
+    font-family: Cairo, sans-serif;
 }
 
 .td-price {
@@ -190,12 +190,12 @@ td {
 
 /* Checkout button */
 .checkout-btn {
-    border: 0px;
+    border: 0;
     border-radius: 5px;
     background: var(--button-bg);
     color: var(--text-light);
     font-size: 18px;
-    font-family: Cairo;
+    font-family: Cairo, sans-serif;
 }
 
 .checkout-btn:focus, .add-btn {
@@ -207,7 +207,7 @@ td {
     font-weight: bold;
     text-decoration: underline;
     color: var(--text-heading);
-    font-family: Cairo;
+    font-family: Cairo, sans-serif;
 }
 
 .close-svg-section {
@@ -220,16 +220,16 @@ td {
     border-radius: 5px;
     height: 3em;
     background-color: var(--popup-input-bg);
-    font-family: Cairo;
+    font-family: Cairo, sans-serif;
 }
 
 .popup-add-btn {
-    border: 0px;
+    border: 0;
     border-radius: 5px;
     background: var(--button-bg);
     color: var(--text-light);
     font-size: 18px;
-    font-family: Cairo;
+    font-family: Cairo, sans-serif;
 }
 
 .popup-add-btn:focus {

@@ -22,11 +22,11 @@ class HeaderNav extends Component {
     renderHamburgerMenu = () => {
         return (
             <div className="menu-mob">
-                <div className="">
+                <div>
                     <NavLink exact to="/home" className="nav-link-mob" activeClassName="nav-link-mob-active">Home</NavLink>
                 </div>
                 <hr className="mx-3 my-0 menu-hr"/>
-                <div className="" >
+                <div>
                     <NavLink exact to="/cart" className="nav-link-mob" activeClassName="nav-link-mob-active " >Cart</NavLink>
                 </div>
             </div>

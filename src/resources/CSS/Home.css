@@ -2,153 +2,28 @@
 
 * {
     scrollbar-width: none;
+    line-height: normal;
+}
+/* Checkbox */
+.check-box {
+    font-family: Cairo, sans-serif;
 }
 
-.Home {
-    margin-left: 2vw;
-    margin-right: 2vw;
-}
-
-/* Categories section */
-.categories-pane {
-    width: 15%;
-    height: 70vh;
+/* Search bar */
+.search-bar-input-home {
+    font-family: Cairo, sans-serif;
+    height: 2.188em;
     border: 1px solid var(--border);
-}
-
-.cat-heading {
-    color: var(--text-heading-secondary);
-    font-size: 19px;
-    font-family: Cairo;
-    text-decoration: underline;
-}
-
-.cat-name {
-    color: var(--text-plain);
-    font-size: 19px;
-}
-
-.cat-text {
-    font-family: Cairo;
-}
-
-/* Items section */
-.items-pane {
-    margin-left: 1.5%;
-    width: 85%;
-    height: 70vh;
-    border: 1px solid var(--border);
-}
-
-.add-btn, .add-btn:focus {
-    outline: none;
-}
-
-/* Items section */
-.items-cluster {
-    overflow-y: auto;
-    scrollbar-width: thin;
-}
-
-.item-category-text {
-    color: var(--text-heading);
-    font-size: 20px;
-    font-family: Cairo;
-}
-
-.items-list-display {
-    flex-wrap: wrap;
-}
-
-.item-box {
-    border: 1px solid var(--border);
-    border-radius: 7px;
-}
-
-.info-svg-section {
-    width: 100%;
-}
-
-.info-svg {
-    cursor: pointer;
-}
-
-.item-image-section {
-    width: 100px;
-    text-align: center;
-    line-height: 5vh;
-    font-size: 15px;
-    font-family: Cairo;
-
-}
-
-.item-image {
-
-}
-
-.item-title {
-    font-size: 15px;
-    color: var(--text-plain);
-    font-family: Cairo;
-
-}
-
-.price-add-section{
-    width: 100%;
-}
-
-.price-text{
-    font-size: 13.5px;
-    color: var(--text-plain);
-    width: 5.063em;
-    font-family: Cairo-Bold;
-}
-
-.add-btn {
-    border: 0px;
-    background: var(--button-bg);
     border-radius: 5px;
-    color: var(--text-light);
-    font-size: 13.5px;
-    font-family: Cairo;
 }
 
-/* Popup section */
-.close-svg-section {
-    width: 100%;
-}
-
-.popup-details-section {
-    width: 100%;
-}
-
-.popup-item-title {
-    width: 100%;
-    word-break: break-all;
-    font-size: 1.75em;
-    font-weight: 500;
-    font-family: Cairo;
-}
-
-.popup-item-desc {
-    width: 100%;
-    word-break: break-all;
-    font-size: 1em;
-    font-family: Cairo;
-}
-
-.popup-price-add-section {
-    width: 100%;
-}
-
-.item-price {
-    font-size: 1.313em;
-    font-weight: 600;
-    font-family: Cairo;
+.search-bar-input-home:focus {
+    outline: none;
+    box-shadow: 0 0 5px var(--input-focus);
 }
 
 .popup-add-btn {
-    font-family: Cairo;
+    font-family: Cairo, sans-serif;
 }
 
 /* carousel arrows color */
@@ -160,23 +35,719 @@
 /* If not category is checked */
 .home-empty-text {
     font-size: 1.75em;
-    font-family: Cairo;
+    font-family: Cairo, sans-serif;
     color:  var(--text-grey);
 }
 
 /* In case the search result is empty */
 .search-info {
     font-size: 1.75em;
-    font-family: Cairo;
+    font-family: Cairo, sans-serif;
     color:  var(--text-grey);
 }
 
-/* Search bar */
-.search-bar-input {
-    font-family: Cairo;
+
+@media only screen and (min-width: 992px){
+    * {
+        scrollbar-width: none;
+    }
+
+    .Home {
+        margin-left: 2vw;
+        margin-right: 2vw;
+    }
+
+    /* Categories section */
+    .categories-pane {
+        width: 15%;
+        height: 70vh;
+        border: 1px solid var(--border);
+        padding: 2em 2em 2em;
+    }
+
+    .cat-heading {
+        color: var(--text-heading-secondary);
+        font-size: 19px;
+        font-family: Cairo, sans-serif;
+        text-decoration: underline;
+    }
+
+    .cat-name {
+        color: var(--text-plain);
+        font-size: 19px;
+    }
+
+    .cat-text {
+        font-family: Cairo, sans-serif;
+    }
+
+    /* Items section */
+    .items-pane {
+        margin-left: 1.5%;
+        width: 85%;
+        height: 70vh;
+        border: 1px solid var(--border);
+    }
+
+    .add-btn, .add-btn:focus {
+        outline: none;
+    }
+
+    .filter-text {
+        display: none;
+    }
+
+    /* Items section */
+    .items-cluster {
+        overflow-y: auto;
+        scrollbar-width: thin;
+    }
+
+    .item-category-text {
+        color: var(--text-heading);
+        font-size: 20px;
+        font-family: Cairo, sans-serif;
+    }
+
+    .items-list-display {
+        flex-wrap: wrap;
+    }
+
+    .item-box {
+        border: 1px solid var(--border);
+        border-radius: 7px;
+        margin-left: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .info-svg-section {
+        width: 100%;
+    }
+
+    .info-svg {
+        cursor: pointer;
+    }
+
+    .item-image-section {
+        width: 100px;
+        text-align: center;
+        line-height: 5vh;
+        font-size: 15px;
+        font-family: Cairo, sans-serif;
+
+    }
+
+    .item-image {
+
+    }
+
+    .item-title {
+        font-size: 15px;
+        color: var(--text-plain);
+        font-family: Cairo, sans-serif;
+
+    }
+
+    .price-add-section{
+        width: 100%;
+    }
+
+    .price-text{
+        font-size: 13.5px;
+        color: var(--text-plain);
+        width: 5.063em;
+        font-family: Cairo-Bold, sans-serif;
+    }
+
+    .add-btn {
+        border: 0;
+        background: var(--button-bg);
+        border-radius: 5px;
+        color: var(--text-light);
+        font-size: 13.5px;
+        font-family: Cairo, sans-serif;
+    }
+
+    /* Popup section */
+    .close-svg-section {
+        width: 100%;
+    }
+
+    .popup-details-section {
+        width: 100%;
+    }
+
+    .popup-item-title {
+        width: 100%;
+        word-break: break-all;
+        font-size: 1.75em;
+        font-weight: 500;
+        font-family: Cairo, sans-serif;
+    }
+
+    .popup-item-desc {
+        width: 100%;
+        word-break: break-all;
+        font-size: 1em;
+        font-family: Cairo, sans-serif;
+    }
+
+    .popup-price-add-section {
+        width: 100%;
+    }
+
+    .item-price {
+        font-size: 1.313em;
+        font-weight: 600;
+        font-family: Cairo, sans-serif;
+    }
 }
 
-/* Checkbox */
-.check-box {
-    font-family: Cairo;
+@media only screen and (min-width: 768px) and (max-width: 991px){
+    * {
+        scrollbar-width: none;
+    }
+
+    .Home {
+        margin-left: 2vw;
+        margin-right: 2vw;
+    }
+
+    /* Categories section */
+    .categories-pane {
+        display: none;
+        width: 0;
+        height: 70vh;
+        /*border: 1px solid var(--border);*/
+    }
+
+    .cat-heading {
+        display: none;
+        color: var(--text-heading-secondary);
+        font-size: 19px;
+        font-family: Cairo, sans-serif;
+        text-decoration: underline;
+    }
+
+    .cat-name {
+        display: none;
+        color: var(--text-plain);
+        font-size: 19px;
+    }
+
+    .cat-text {
+        display: none;
+        font-family: Cairo, sans-serif;
+    }
+
+    .cat-list-mob {
+        width: 90%;
+    }
+
+    .cat-modal-title-section {
+        width: 100%;
+    }
+
+    .cat-modal-title {
+        font-size: 1.25em;
+        font-family: Cairo, sans-serif;
+        color: var(--nav-link-active);
+    }
+
+    .cat-text-mob {
+        font-size: 1.25em;
+        font-family: Cairo, sans-serif;
+    }
+
+    .items-pane {
+        width: 100%;
+        height: 70vh;
+        border: 1px solid var(--border);
+    }
+
+    .add-btn, .add-btn:focus {
+        outline: none;
+    }
+
+    /* filter text  */
+    .filter-text {
+        font-size: 1.25em;
+        font-family: Cairo, sans-serif;
+        color: var(--nav-link-active);
+        cursor: pointer;
+    }
+
+    /* Items section */
+    .items-cluster {
+        overflow-y: auto;
+        scrollbar-width: thin;
+
+    }
+
+    .item-category-text {
+        color: var(--text-heading);
+        font-size: 20px;
+        font-family: Cairo, sans-serif;
+    }
+
+    .items-list-display {
+        flex-wrap: wrap;
+    }
+
+    .item-box {
+        border: 1px solid var(--border);
+        border-radius: 7px;
+        margin-left: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .info-svg-section {
+        width: 100%;
+    }
+
+    .info-svg {
+        cursor: pointer;
+    }
+
+    .item-image-section {
+        width: 100px;
+        text-align: center;
+        line-height: 5vh;
+        font-size: 15px;
+        font-family: Cairo, sans-serif;
+
+    }
+
+    .item-image {
+
+    }
+
+    .item-title {
+        font-size: 15px;
+        color: var(--text-plain);
+        font-family: Cairo, sans-serif;
+
+    }
+
+    .price-add-section{
+        width: 100%;
+    }
+
+    .price-text{
+        font-size: 13.5px;
+        color: var(--text-plain);
+        width: 5.063em;
+        font-family: Cairo-Bold, sans-serif;
+    }
+
+    .add-btn {
+        border: 0;
+        background: var(--button-bg);
+        border-radius: 5px;
+        color: var(--text-light);
+        font-size: 13.5px;
+        font-family: Cairo, sans-serif;
+    }
+
+    /* Popup section */
+    .close-svg-section {
+        width: 100%;
+    }
+
+    .popup-details-section {
+        width: 100%;
+    }
+
+    .popup-item-title {
+        width: 100%;
+        word-break: break-all;
+        font-size: 1.75em;
+        font-weight: 500;
+        font-family: Cairo, sans-serif;
+    }
+
+    .popup-item-desc {
+        width: 100%;
+        word-break: break-all;
+        font-size: 1em;
+        font-family: Cairo, sans-serif;
+    }
+
+    .popup-price-add-section {
+        width: 100%;
+    }
+
+    .item-price {
+        font-size: 1.313em;
+        font-weight: 600;
+        font-family: Cairo, sans-serif;
+    }
 }
+
+
+@media only screen and (min-width: 600px) and (max-width: 767px){
+    * {
+        scrollbar-width: none;
+    }
+
+    .Home {
+        margin-left: 2vw;
+        margin-right: 2vw;
+    }
+
+    /* Categories section */
+    .categories-pane {
+        display: none;
+        width: 0;
+        height: 70vh;
+        /*border: 1px solid var(--border);*/
+    }
+
+    .cat-heading {
+        display: none;
+        color: var(--text-heading-secondary);
+        font-size: 19px;
+        font-family: Cairo, sans-serif;
+        text-decoration: underline;
+    }
+
+    .cat-name {
+        display: none;
+        color: var(--text-plain);
+        font-size: 19px;
+    }
+
+    .cat-list-mob {
+        width: 90%;
+    }
+
+    .cat-modal-title-section {
+        width: 100%;
+    }
+
+    .cat-modal-title {
+        font-size: 1.25em;
+        font-family: Cairo, sans-serif;
+        color: var(--nav-link-active);
+    }
+
+    .cat-text-mob {
+        font-size: 1.25em;
+        font-family: Cairo, sans-serif;
+    }
+
+    .cat-text {
+        display: none;
+        font-family: Cairo, sans-serif;
+    }
+
+    /* filter text  */
+    .filter-text {
+        font-size: 1.25em;
+        font-family: Cairo, sans-serif;
+        color: var(--nav-link-active);
+        cursor: pointer;
+    }
+
+    /* Items section */
+    .items-pane {
+        scrollbar-width: thin;
+        width: 100%;
+        height: 70vh;
+        border: 1px solid var(--border);
+    }
+
+    .add-btn, .add-btn:focus {
+        outline: none;
+    }
+
+
+    .items-cluster {
+        overflow-y: auto;
+        scrollbar-width: thin;
+        height: 75vh;
+    }
+
+    .item-category-text {
+        color: var(--text-heading);
+        font-size: 20px;
+        font-family: Cairo, sans-serif;
+    }
+
+    .items-list-display {
+        flex-wrap: wrap;
+    }
+
+    .item-box {
+        border: 1px solid var(--border);
+        border-radius: 7px;
+        margin-left: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .info-svg-section {
+        width: 100%;
+    }
+
+    .info-svg {
+        cursor: pointer;
+    }
+
+    .item-image-section {
+        width: 100px;
+        text-align: center;
+        line-height: 5vh;
+        font-size: 15px;
+        font-family: Cairo, sans-serif;
+
+    }
+
+    .item-image {
+
+    }
+
+    .item-title {
+        font-size: 15px;
+        color: var(--text-plain);
+        font-family: Cairo, sans-serif;
+
+    }
+
+    .price-add-section{
+        width: 100%;
+    }
+
+    .price-text{
+        font-size: 13.5px;
+        color: var(--text-plain);
+        width: 5.063em;
+        font-family: Cairo-Bold, sans-serif;
+    }
+
+    .add-btn {
+        border: 0;
+        background: var(--button-bg);
+        border-radius: 5px;
+        color: var(--text-light);
+        font-size: 13.5px;
+        font-family: Cairo, sans-serif;
+    }
+
+    /* Popup section */
+    .close-svg-section {
+        width: 100%;
+    }
+
+    .popup-details-section {
+        width: 100%;
+    }
+
+    .popup-item-title {
+        width: 100%;
+        word-break: break-all;
+        font-size: 1.75em;
+        font-weight: 500;
+        font-family: Cairo, sans-serif;
+    }
+
+    .popup-item-desc {
+        width: 100%;
+        word-break: break-all;
+        font-size: 1em;
+        font-family: Cairo, sans-serif;
+    }
+
+    .popup-price-add-section {
+        width: 100%;
+    }
+
+    .item-price {
+        font-size: 1.313em;
+        font-weight: 600;
+        font-family: Cairo, sans-serif;
+    }
+}
+
+@media only screen and (max-width: 599px){
+    * {
+        scrollbar-width: none;
+    }
+
+    .Home {
+        margin-left: 2vw;
+        margin-right: 2vw;
+    }
+
+    /* Categories section */
+    .categories-pane {
+        display: none;
+        width: 0;
+        height: 70vh;
+        /*border: 1px solid var(--border);*/
+    }
+
+    .cat-heading {
+        display: none;
+        color: var(--text-heading-secondary);
+        font-size: 19px;
+        font-family: Cairo, sans-serif;
+        text-decoration: underline;
+    }
+
+    .cat-name {
+        display: none;
+        color: var(--text-plain);
+        font-size: 19px;
+    }
+
+    .cat-list-mob {
+        width: 90%;
+    }
+
+    .cat-modal-title-section {
+        width: 100%;
+    }
+
+    .cat-modal-title {
+        font-size: 1.25em;
+        font-family: Cairo, sans-serif;
+        color: var(--nav-link-active);
+    }
+
+    .cat-text-mob {
+        font-size: 1.25em;
+        font-family: Cairo, sans-serif;
+    }
+
+    .cat-text {
+        display: none;
+        font-family: Cairo, sans-serif;
+    }
+
+    /* filter text  */
+    .filter-text {
+        font-size: 1.25em;
+        font-family: Cairo, sans-serif;
+        color: var(--nav-link-active);
+        cursor: pointer;
+    }
+
+    /* Items section */
+    .items-pane {
+        scrollbar-width: thin;
+        width: 100%;
+        height: 70vh;
+        border: 1px solid var(--border);
+    }
+
+    .add-btn, .add-btn:focus {
+        outline: none;
+    }
+
+
+    .items-cluster {
+        overflow-y: auto;
+        scrollbar-width: thin;
+        height: 85%;
+    }
+
+    .item-category-text {
+        color: var(--text-heading);
+        font-size: 20px;
+        font-family: Cairo, sans-serif;
+    }
+
+    .items-list-display {
+        flex-wrap: wrap;
+    }
+
+    .item-box {
+        border: 1px solid var(--border);
+        border-radius: 7px;
+        margin-right: 0.5em;
+        margin-bottom: 0.75rem;
+    }
+
+    .info-svg-section {
+        width: 100%;
+    }
+
+    .info-svg {
+        cursor: pointer;
+    }
+
+    .item-image-section {
+        width: 100px;
+        text-align: center;
+        line-height: 5vh;
+        font-size: 15px;
+        font-family: Cairo, sans-serif;
+
+    }
+
+    .item-image {
+
+    }
+
+    .item-title {
+        font-size: 15px;
+        color: var(--text-plain);
+        font-family: Cairo, sans-serif;
+
+    }
+
+    .price-add-section{
+        width: 100%;
+    }
+
+    .price-text{
+        font-size: 13.5px;
+        color: var(--text-plain);
+        width: 5.063em;
+        font-family: Cairo-Bold, sans-serif;
+    }
+
+    .add-btn {
+        border: 0;
+        background: var(--button-bg);
+        border-radius: 5px;
+        color: var(--text-light);
+        font-size: 13.5px;
+        font-family: Cairo, sans-serif;
+    }
+
+    /* Popup section */
+    .close-svg-section {
+        width: 100%;
+    }
+
+    .popup-details-section {
+        width: 100%;
+    }
+
+    .popup-item-title {
+        width: 100%;
+        word-break: break-all;
+        font-size: 1.75em;
+        font-weight: 500;
+        font-family: Cairo, sans-serif;
+    }
+
+    .popup-item-desc {
+        width: 100%;
+        word-break: break-all;
+        font-size: 1em;
+        font-family: Cairo, sans-serif;
+    }
+
+    .popup-price-add-section {
+        width: 100%;
+    }
+
+    .item-price {
+        font-size: 1.313em;
+        font-weight: 600;
+        font-family: Cairo, sans-serif;
+    }
+}
+

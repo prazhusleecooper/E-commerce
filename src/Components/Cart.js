@@ -22,7 +22,7 @@ class Cart extends Component {
     toggleModel = () => {
             this.setState( {
                 modal: !this.state.modal
-            })
+            });
     };
 
     /* Method to retrieve the cart items and calculate the checkout sum */
@@ -63,10 +63,10 @@ class Cart extends Component {
     removeCartItem = (item) => {
         let index = this.state.cartItems.indexOf(item);
         if(index !== -1) {
-            let tempArr = this.state.cartItems;
-            tempArr.splice(index, 1);
+            let tempArray = this.state.cartItems;
+            tempArray.splice(index, 1);
             this.setState({
-                cartItems: tempArr
+                cartItems: tempArray
             });
             this.props.removeItem(item);
         }
@@ -80,7 +80,7 @@ class Cart extends Component {
              this.props.addItem(item);
              this.setState({
                  cartItems: this.props.addedItems
-             })
+             });
          }
 
     };
@@ -96,7 +96,7 @@ class Cart extends Component {
              this.props.decreaseQty(item);
              this.setState({
                  cartItems: this.props.addedItems
-             })
+             });
          }
      };
 
@@ -185,7 +185,7 @@ class Cart extends Component {
                                     <input className="p-2 popup-input" placeholder="Item Name" />
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-center pt-3">
-                                    <input className="p-2 popup-input" placeholder="Quanity" />
+                                    <input className="p-2 popup-input" placeholder="Quantity" />
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-center pt-3">
                                     <input className="p-2 popup-input" placeholder="Price" />

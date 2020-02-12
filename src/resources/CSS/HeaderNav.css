@@ -8,10 +8,7 @@
 @media only screen and (min-width: 992px) {
 
     .header-nav {
-        margin-top: 2vh;
-        margin-bottom: 3vh;
-        margin-left: 2vw;
-        margin-right: 2vw;
+        margin: 2vh 2vw 3vh 2vw;
     }
 
     .logo-section {
@@ -24,7 +21,7 @@
         margin-left: 4%;
         color: var(--text-heading);
         font-size: 20px;
-        font-family: Cairo;
+        font-family: Cairo, sans-serif;
     }
 
     .nav-bar {
@@ -39,7 +36,7 @@
         text-decoration: underline;
         cursor: pointer;
         font-size: 20px;
-        font-family: Cairo;
+        font-family: Cairo, sans-serif;
     }
 
     .nav-link {
@@ -99,10 +96,7 @@
 /* tablets */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .header-nav {
-        margin-top: 2vh;
-        margin-bottom: 3vh;
-        margin-left: 2vw;
-        margin-right: 2vw;
+        margin: 2vh 2vw 3vh 2vw;
     }
     .logo-section {
         width: 35%;
@@ -113,7 +107,7 @@
         margin-left: 4%;
         color: var(--text-heading);
         font-size: 20px;
-        font-family: Cairo;
+        font-family: Cairo, sans-serif;
     }
 
     .nav-bar {
@@ -128,7 +122,7 @@
         text-decoration: underline;
         cursor: pointer;
         font-size: 20px;
-        font-family: Cairo;
+        font-family: Cairo, sans-serif;
     }
 
     .nav-link {
@@ -190,10 +184,7 @@
         overflow-y: auto;
     }
     .header-nav {
-        margin-top: 2vh;
-        margin-bottom: 3vh;
-        margin-left: 2vw;
-        margin-right: 2vw;
+        margin: 2vh 2vw 3vh 2vw;
     }
     .logo-section {
         width: 93%;
@@ -205,7 +196,7 @@
         margin-left: 4%;
         color: var(--text-heading);
         font-size: 20px;
-        font-family: Cairo;
+        font-family: Cairo, sans-serif;
     }
 
     .nav-text-home, .nav-text-cart {
@@ -245,7 +236,7 @@
 
     .nav-link-mob, .nav-link-mob-active, .nav-link-mob:hover, .nav-link-mob-active:hover {
         font-size: 20px;
-        font-family: Cairo;
+        font-family: Cairo, sans-serif;
         color: var(--text-heading);
         text-decoration: none;
         outline: none;
@@ -271,7 +262,7 @@
         margin-left: 4%;
         color: var(--text-heading);
         font-size: 20px;
-        font-family: Cairo;
+        font-family: Cairo, sans-serif;
     }
 
     .nav-text-home, .nav-text-cart {
@@ -311,7 +302,7 @@
 
     .nav-link-mob, .nav-link-mob-active, .nav-link-mob:hover, .nav-link-mob-active:hover {
         font-size: 20px;
-        font-family: Cairo;
+        font-family: Cairo, sans-serif;
         color: var(--text-heading);
         text-decoration: none;
         outline: none;

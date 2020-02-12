@@ -17,7 +17,7 @@
 .footer-content {
     color: var(--text-plain);
     font-size: 15px;
-    font-family: Cairo;
+    font-family: Cairo, sans-serif;
 }
 
 
