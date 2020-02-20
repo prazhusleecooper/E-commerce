@@ -166,8 +166,11 @@ class Cart extends Component {
         return (<button className="px-4 py-1 checkout-btn">Checkout</button>);
     };
 
-    render() {
+    componentDidMount() {
         this.cartInit();
+    }
+
+    render() {
         console.log('GOING INTO RETURN');
         return (
            <div className="MidSection">

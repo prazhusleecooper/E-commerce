@@ -12,6 +12,7 @@ class HeaderNav extends Component {
         }
     }
 
+    /* method to trigger the hamburger menu - only mobile screens */
     triggerHamburgerMenu = () => {
         this.setState({
            mobileMenu: !this.state.mobileMenu
@@ -19,6 +20,7 @@ class HeaderNav extends Component {
     };
 
     //Rendering methods
+    /* method to render the hamburger menu - only one mobile screens */
     renderHamburgerMenu = () => {
         return (
             <div className="menu-mob">
@@ -31,7 +33,7 @@ class HeaderNav extends Component {
                 </div>
             </div>
         );
-    }
+    };
 
     render() {
         return(

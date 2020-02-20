@@ -8,16 +8,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import SVG from "react-inlinesvg";
 import { connect } from "react-redux";
 import { addItem, clearItems } from "../actions";
-import home_items_data from '../resources/JSON/home_items';
-import categories_data from '../resources/JSON/categories';
 
 class Home extends Component {
     constructor(props) {
         super(props);
         // this.props.clearItems();
         this.state = {
-            catJson: categories_data,      /* categories.json data */
-            homeItems: home_items_data,     /* home_items.json data */
+            sampleTest: [],
+            catJson: [],      /* categories.json data */
+            homeItems: [],     /* home_items.json data */
             modal: false,                   /* popup modal - MDBReact modal */
             categories_modal: false,        /* popup modal for the categories in mobile view */
             selected_item: {                /* currently selected item - displayed in the popup modal */
@@ -56,6 +55,7 @@ class Home extends Component {
         })
     };
 
+    /* Method to toggle the categories filter menu - only on mobile screens */
     toggleCategoriesModal = () => {
         this.setState({
            categories_modal: !this.state.categories_modal
@@ -226,6 +226,41 @@ class Home extends Component {
             </div>
         );
     };
+
+    //ComponentDidMount() method
+    componentDidMount() {
+        fetch("http://localhost:1338/items")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log("THE FETCH METHOD::::", result);
+                    this.setState({
+                        homeItems: result
+                    });
+                },
+                (error) => {
+                    console.log("ERROR HAS OCCURED", error);
+                }
+            );
+        fetch("http://localhost:1338/categories")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log("THE CATEGORIES IS ::::", result);
+                    let cateoryJsonTemp = {};
+                    result.map(item => {
+                        cateoryJsonTemp[item.categoryName] =  true;
+                    })
+                    console.log("CAT JSON TEMP:::", cateoryJsonTemp);
+                    this.setState({
+                        catJson: cateoryJsonTemp
+                    })
+                },
+                (error) => {
+                    console.log("ERROR FETCHING CATEGORIES::",error);
+                }
+            )
+    }
 
     render() {
         return (

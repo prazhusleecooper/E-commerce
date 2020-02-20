@@ -1,7 +1,8 @@
+//REDUX reducer
 const addToCartReducer = (state= [], action) => {
     switch (action.type) {
-        case "addItem":
-            let presence = false;
+        case "addItem":                                                         //to add an item to the cart
+            let presence = false;                                               //also to increase the quantity by one unit
             if(state.length === 0) {
                 state = [...state, action.payload];
             } else if(state.length !== 0) {
@@ -20,13 +21,13 @@ const addToCartReducer = (state= [], action) => {
             window.localStorage.setItem("cartItems", JSON.stringify(state));
             return state;
 
-        case "clearItems":
+        case "clearItems":                                                     //to clear all the items from cart
             return state = [];
 
-        case "setRetrievedState":
+        case "setRetrievedState":                                              //to retrieve cart data from local storage in case that redux cart data is unavailable
             return state = action.payload;
 
-        case "removeItem":
+        case "removeItem":                                                     //to remove an item completely from the cart
             state.map((stateItem, index = 0) => {
                 if(stateItem.uid === action.payload.uid) {
                     console.log("STATE BEFORE REMOVING:", state);
@@ -38,7 +39,7 @@ const addToCartReducer = (state= [], action) => {
             window.localStorage.setItem("cartItems", JSON.stringify(state));
             return state;
 
-        case "decreaseQty":
+        case "decreaseQty":                                                    //to decrease the quantity by one unit
         //    start here :)
             state.map((item, index = 0) => {
                if(item.uid === action.payload.uid) {
