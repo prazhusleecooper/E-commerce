@@ -4,7 +4,7 @@ import SVG from 'react-inlinesvg';
 import { MDBContainer, MDBModal, MDBModalBody } from 'mdbreact';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from "react-redux";
-import { addItem, setRetrievedState, removeItem, decreaseQty } from "../actions";
+import {addItem, setRetrievedState, removeItem, decreaseQty, clearItems} from "../actions";
 
 class Cart extends Component {
     constructor(props) {
@@ -87,11 +87,7 @@ class Cart extends Component {
 
     /* Method to decrease the item quantity by one unit */
     decreaseQty = (item) => {
-         console.log("THE ITEM TO BE REDUCED IS:::", item);
          let index = this.state.cartItems.indexOf(item);
-         console.log("THE INDEX IS::", index);
-         console.log("ITEM QTY IS::", item.quantity);
-         console.log("state QTY IS::", this.state.cartItems[index].quantity);
          if(index !== -1) {
              this.props.decreaseQty(item);
              this.setState({
@@ -99,6 +95,37 @@ class Cart extends Component {
              });
          }
      };
+
+    /* Checkout the items - delete item units */
+    checkoutItems = () => {
+        console.log("CHECKOUT BTN CLICKED::::", this.state.cartItems);
+        let checkoutItemsList = this.state.cartItems;
+        checkoutItemsList.map(item => {
+           item.totalQuantity -= item.quantity;
+           item.total_price = item.price;
+           item.quantity = 1;
+        });
+        console.log("checkoutItemsList::", checkoutItemsList);
+        console.log("checkoutItemsList STRINGIFY::", JSON.stringify(checkoutItemsList));
+        fetch("http://localhost:1338/delUnits",
+            {method: 'PATCH',
+                mode: 'cors',
+                body: JSON.stringify(checkoutItemsList),
+                headers: { "Content-Type": "application/json" }}
+            )
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log("patched::", result);
+                },
+                (error) => {
+                    console.log("ERROR PATCHING::", error);
+                }
+            );
+
+        this.state.cartItems = [];
+        this.props.clearItems();
+    };
 
     //Rendering methods
     /* Empty cart alert */
@@ -163,17 +190,16 @@ class Cart extends Component {
 
     /* Render the checkout button */
     checkoutButton = () => {
-        return (<button className="px-4 py-1 checkout-btn">Checkout</button>);
+        return (
+            <button className="px-4 py-1 checkout-btn" onClick={() => this.checkoutItems()}>Checkout</button>
+        );
     };
-
-    componentDidMount() {
-        this.cartInit();
-    }
 
     render() {
         console.log('GOING INTO RETURN');
         return (
            <div className="MidSection">
+               {this.cartInit()}
             <div className="CartSection">
                 {/* MDB modal popup */}
                 <MDBContainer>
@@ -248,6 +274,7 @@ const mapDispatchToProps = () => {
         setRetrievedState,
         removeItem,
         decreaseQty,
+        clearItems,
     }
 };
 

@@ -14,7 +14,6 @@ class Home extends Component {
         super(props);
         // this.props.clearItems();
         this.state = {
-            sampleTest: [],
             catJson: [],      /* categories.json data */
             homeItems: [],     /* home_items.json data */
             modal: false,                   /* popup modal - MDBReact modal */
@@ -109,6 +108,20 @@ class Home extends Component {
         console.log("ThE ITEM IS ::", item);
         toast.warn("Item has been added to your Cart!");
         this.props.addItem(item);
+    };
+
+    onUnload = (e) => {
+        fetch('http://localhost:1338/sample')
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log("res::", result);
+                },
+                (err) => {
+                    console.log("SAMPLE HIT FAILED", err);
+                }
+            );
+        window.alert("HELLo");
     };
 
     //Rendering methods
@@ -250,7 +263,7 @@ class Home extends Component {
                     let cateoryJsonTemp = {};
                     result.map(item => {
                         cateoryJsonTemp[item.categoryName] =  true;
-                    })
+                    });
                     console.log("CAT JSON TEMP:::", cateoryJsonTemp);
                     this.setState({
                         catJson: cateoryJsonTemp
@@ -260,7 +273,18 @@ class Home extends Component {
                     console.log("ERROR FETCHING CATEGORIES::",error);
                 }
             )
+        // window.addEventListener("beforeunload", (ev) => this.onUnload(ev))
+        window.addEventListener("beforeunload", () => this.onUnload(), false);
     }
+
+    //ComponentWillUnmount function
+    componentWillUnmount() {
+        // window.addEventListener("beforeunload", (ev) => this.onUnload(ev))
+        window.addEventListener("beforeunload", () => this.onUnload(), false);
+    }
+
+
+
 
     render() {
         return (

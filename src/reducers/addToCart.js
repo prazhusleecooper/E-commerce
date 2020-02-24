@@ -22,6 +22,7 @@ const addToCartReducer = (state= [], action) => {
             return state;
 
         case "clearItems":                                                     //to clear all the items from cart
+            window.localStorage.removeItem("cartItems");
             return state = [];
 
         case "setRetrievedState":                                              //to retrieve cart data from local storage in case that redux cart data is unavailable
@@ -40,7 +41,6 @@ const addToCartReducer = (state= [], action) => {
             return state;
 
         case "decreaseQty":                                                    //to decrease the quantity by one unit
-        //    start here :)
             state.map((item, index = 0) => {
                if(item.uid === action.payload.uid) {
                    let tempArr = state;
