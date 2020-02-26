@@ -1,0 +1,76 @@
+@import "variable.css";
+
+* {
+    scrollbar-width: none;
+}
+
+/* Large screens */
+@media only screen and (min-width: 992px) {
+    .login-page-main {
+        margin: 0 2vw 0 2vw;
+        height: 70vh;
+        border: 1px solid var(--border);
+    }
+
+    .form-section {
+        margin: 2em 0 0 0;
+        width: 25vw;
+    }
+
+    .heading-text-section {
+
+    }
+
+    .heading-text {
+        font-size: 40px;
+        font-weight: 600;
+        font-family: Cairo;
+        color: var(--text-heading);
+    }
+
+    .login-hr {
+        border: 2px solid var(--text-heading-secondary);
+        margin: 0 0 1em 0;
+    }
+
+    .input-boxes-section {
+
+    }
+
+    .input-box-label {
+        font-size: 25px;
+        font-family: Cairo;
+        margin: 0;
+    }
+
+    .email-input-box, .password-input-box {
+        margin: 0 0 1em 0;
+        padding: 0 5px 0 5px;
+        width: 100%;
+        height: 40px;
+        font-size: 17px;
+        font-family: Cairo;
+    }
+
+    .email-input-box:focus, .password-input-box:focus {
+        outline: none;
+        box-shadow: 0 0 5px var(--input-focus);
+    }
+
+    .submit-btn-section {
+        width: 100%;
+        margin: 1em 0 0 0;
+    }
+
+    .submit-btn {
+        padding: .3em 1.5em .3em 1.5em;
+        border-radius: 35px;
+        border: 2px solid var(--button-border);
+        font-family: Cairo, serif;
+        font-weight: 700;
+        font-size: 20px;
+        color: var(--button-text);
+        background-color: #fff;
+    }
+
+}

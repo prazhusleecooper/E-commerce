@@ -5,6 +5,7 @@ import Home from './Components/Home';
 import Cart from './Components/Cart';
 import Footer from './Components/Footer.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from "./Components/Login";
 
 
 class App extends Component {
@@ -29,7 +30,7 @@ class App extends Component {
     render() {
     return (
       <div className="App">
-        <HeaderNav />
+          <HeaderNav />
           <Switch>
               <Route path="/home">
                 <Home />
@@ -37,10 +38,12 @@ class App extends Component {
               <Route path="/cart" >
                 <Cart />
               </Route>
+              <Route path="/login">
+                  <Login />
+              </Route>
           </Switch>
         <Footer />
       </div>
-
     );
   }
 }

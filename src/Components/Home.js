@@ -9,6 +9,8 @@ import SVG from "react-inlinesvg";
 import { connect } from "react-redux";
 import { addItem, clearItems } from "../actions";
 
+let jwtDecode = require('jwt-decode');
+
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -28,6 +30,8 @@ class Home extends Component {
             },
             searchBarInput: false  /* Search Bar Empty => false || Search Bar not Empty => true */
         };
+        let lol = localStorage.getItem('cartItems');
+        console.log('THE LOCAL STORAGE ITEM IS:::', lol);
     }
 
     /* Toggle on modal popup */
@@ -110,8 +114,19 @@ class Home extends Component {
         this.props.addItem(item);
     };
 
-    onUnload = (e) => {
-        fetch('http://localhost:1338/sample')
+    onUnload = () => {
+        let decodedToken = jwtDecode(localStorage.getItem('TOKEN'));
+        let requestBody = {
+            email: decodedToken.email,
+            cartItems: localStorage.getItem('cartItems')
+        }
+        fetch('http://localhost:1338/savecart',
+            {
+                method: 'PATCH',
+                mode: 'cors',
+                body: JSON.stringify(requestBody),
+                headers: {'Content-Type': 'application/json'}
+            })
             .then(res => res.json())
             .then(
                 (result) => {
@@ -121,7 +136,6 @@ class Home extends Component {
                     console.log("SAMPLE HIT FAILED", err);
                 }
             );
-        window.alert("HELLo");
     };
 
     //Rendering methods
@@ -274,12 +288,14 @@ class Home extends Component {
                 }
             )
         // window.addEventListener("beforeunload", (ev) => this.onUnload(ev))
+        window.addEventListener("load", () => this.onUnload(), false);
         window.addEventListener("beforeunload", () => this.onUnload(), false);
     }
 
     //ComponentWillUnmount function
     componentWillUnmount() {
         // window.addEventListener("beforeunload", (ev) => this.onUnload(ev))
+        window.addEventListener("load", () => this.onUnload(), false);
         window.addEventListener("beforeunload", () => this.onUnload(), false);
     }
 

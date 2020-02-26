@@ -108,11 +108,12 @@ class Cart extends Component {
         console.log("checkoutItemsList::", checkoutItemsList);
         console.log("checkoutItemsList STRINGIFY::", JSON.stringify(checkoutItemsList));
         fetch("http://localhost:1338/delUnits",
-            {method: 'PATCH',
+            {
+                method: 'PATCH',
                 mode: 'cors',
                 body: JSON.stringify(checkoutItemsList),
-                headers: { "Content-Type": "application/json" }}
-            )
+                headers: { "Content-Type": "application/json" }
+            })
             .then(res => res.json())
             .then(
                 (result) => {
