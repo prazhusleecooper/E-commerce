@@ -28,6 +28,7 @@ class Home extends Component {
                 "description": "",
                 "category": ""
             },
+            loggedIn: false,
             searchBarInput: false  /* Search Bar Empty => false || Search Bar not Empty => true */
         };
         let lol = localStorage.getItem('cartItems');
@@ -102,40 +103,65 @@ class Home extends Component {
 
     /* Adding item to cart - from the modal popup */
     addItemToCart = () => {
-        console.log("SELECTED ITEM ", this.state.selected_item);
-        toast.warn("Item has been added to your Cart!");
-        this.props.addItem(this.state.selected_item);
+        if(this.state.loggedIn) {
+            toast.warn("Item has been added to your Cart!");
+            this.props.addItem(this.state.selected_item);
+        } else {
+            toast.error("Kindly Log-in to add items to cart")
+        }
     };
 
     /* Adding item to cart - directly from the home page */
     dirAddToCart = (item) => {
-        console.log("ThE ITEM IS ::", item);
-        toast.warn("Item has been added to your Cart!");
-        this.props.addItem(item);
+        if(this.state.loggedIn) {
+            toast.warn("Item has been added to your Cart!");
+            this.props.addItem(item);
+        } else {
+            toast.error("Kindly Log-in to add items to cart")
+        }
     };
 
+    /* Update the items in the cart on unload */
     onUnload = () => {
-        let decodedToken = jwtDecode(localStorage.getItem('TOKEN'));
-        let requestBody = {
-            email: decodedToken.email,
-            cartItems: localStorage.getItem('cartItems')
+        if(localStorage.getItem('TOKEN') !== null) {
+            let decodedToken = jwtDecode(localStorage.getItem('TOKEN'));
+            let requestBody = {
+                email: decodedToken.email,
+                cartItems: localStorage.getItem('cartItems')
+            };
+            fetch('http://localhost:1338/savecart',
+                {
+                    method: 'PATCH',
+                    mode: 'cors',
+                    body: JSON.stringify(requestBody),
+                    headers: {'Content-Type': 'application/json'}
+                })
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        console.log("res::", result);
+                    },
+                    (err) => {
+                        console.log("SAMPLE HIT FAILED", err);
+                    }
+                );
         }
-        fetch('http://localhost:1338/savecart',
-            {
-                method: 'PATCH',
-                mode: 'cors',
-                body: JSON.stringify(requestBody),
-                headers: {'Content-Type': 'application/json'}
-            })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    console.log("res::", result);
-                },
-                (err) => {
-                    console.log("SAMPLE HIT FAILED", err);
-                }
-            );
+    };
+
+    sessionTimeout = () => {
+        let currentTime = Math.round((new Date()).getTime() / 1000);
+        if(localStorage.getItem('TOKEN')) {
+            let decodedToken = jwtDecode(localStorage.getItem('TOKEN'));
+            if(currentTime > decodedToken.exp) {
+                this.onUnload();
+                window.localStorage.clear();
+                this.props.clearItems();
+                this.setState({
+                    loggedIn: false
+                });
+                // window.location
+            }
+        }
     };
 
     //Rendering methods
@@ -256,6 +282,7 @@ class Home extends Component {
 
     //ComponentDidMount() method
     componentDidMount() {
+        console.log("COMPONENT DID MOUNT");
         fetch("http://localhost:1338/items")
             .then(res => res.json())
             .then(
@@ -286,17 +313,25 @@ class Home extends Component {
                 (error) => {
                     console.log("ERROR FETCHING CATEGORIES::",error);
                 }
-            )
+            );
+        if(localStorage.getItem('TOKEN') !== null) {
+            this.setState({
+               loggedIn: true
+            });
+        }
+        this.sessionTimeout();
         // window.addEventListener("beforeunload", (ev) => this.onUnload(ev))
         window.addEventListener("load", () => this.onUnload(), false);
-        window.addEventListener("beforeunload", () => this.onUnload(), false);
+        // window.addEventListener("beforeunload", () => this.onUnload(), false);
+
     }
 
     //ComponentWillUnmount function
     componentWillUnmount() {
+        this.onUnload();
         // window.addEventListener("beforeunload", (ev) => this.onUnload(ev))
         window.addEventListener("load", () => this.onUnload(), false);
-        window.addEventListener("beforeunload", () => this.onUnload(), false);
+        // window.addEventListener("beforeunload", () => this.onUnload(), false);
     }
 
 

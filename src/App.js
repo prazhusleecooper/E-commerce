@@ -6,6 +6,7 @@ import Cart from './Components/Cart';
 import Footer from './Components/Footer.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from "./Components/Login";
+import Signup from "./Components/Signup";
 
 
 class App extends Component {
@@ -41,6 +42,10 @@ class App extends Component {
               <Route path="/login">
                   <Login />
               </Route>
+              <Route path="/signup">
+                  <Signup />
+              </Route>
+
           </Switch>
         <Footer />
       </div>

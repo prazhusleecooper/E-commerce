@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from "react-redux";
 import {addItem, setRetrievedState, removeItem, decreaseQty, clearItems} from "../actions";
 
+let jwtDecode = require('jwt-decode');
+
 class Cart extends Component {
     constructor(props) {
         super(props);
@@ -14,7 +16,8 @@ class Cart extends Component {
             empty: false,
             modal: false,
             itemAdded: false,
-            sum: null
+            sum: null,
+            loggedIn: false,
         }
     }
 
@@ -131,7 +134,11 @@ class Cart extends Component {
     //Rendering methods
     /* Empty cart alert */
     cartEmpty = () => {
-        return (<div className="d-flex flex-row align-items-center justify-content-center cart-empty-text py-4">Your Cart is empty!</div>);
+        if(this.state.loggedIn) {
+            return (<div className="d-flex flex-row align-items-center justify-content-center cart-empty-text py-4">Your Cart is empty!</div>);
+        } else {
+            return (<div className="d-flex flex-row align-items-center justify-content-center cart-empty-text py-4">Log-in to add items and view your cart</div>);
+        }
     };
 
     /* Method to render the cart table */
@@ -195,6 +202,66 @@ class Cart extends Component {
             <button className="px-4 py-1 checkout-btn" onClick={() => this.checkoutItems()}>Checkout</button>
         );
     };
+
+    /* Update the items in the cart on unload */
+    onUnload = () => {
+        if(localStorage.getItem('TOKEN') !== null) {
+            let decodedToken = jwtDecode(localStorage.getItem('TOKEN'));
+            let requestBody = {
+                userId: decodedToken.userId,
+                cartItems: localStorage.getItem('cartItems')
+            };
+            fetch('http://localhost:1338/savecart',
+                {
+                    method: 'PATCH',
+                    mode: 'cors',
+                    body: JSON.stringify(requestBody),
+                    headers: {'Content-Type': 'application/json'}
+                })
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        console.log("res::", result);
+                    },
+                    (err) => {
+                        console.log("SAMPLE HIT FAILED", err);
+                    }
+                );
+        }
+    };
+
+    sessionTimeout = () => {
+        let currentTime = Math.round((new Date()).getTime() / 1000);
+        if(localStorage.getItem('TOKEN')) {
+            let decodedToken = jwtDecode(localStorage.getItem('TOKEN'));
+            if(currentTime > decodedToken.exp) {
+                this.onUnload();
+                window.localStorage.clear();
+                this.props.clearItems();
+                this.setState({
+                    loggedIn: false
+                });
+                // window.location
+            }
+        }
+    };
+
+    componentDidMount() {
+        if(localStorage.getItem('TOKEN') !== null) {
+            this.setState({
+                loggedIn: true
+            });
+        }
+        this.sessionTimeout();
+        window.addEventListener("load", () => this.onUnload(), false);
+        // window.addEventListener("beforeunload", () => this.onUnload(), false);
+    }
+
+    componentWillUnmount() {
+        this.onUnload();
+        window.addEventListener("load", () => this.onUnload(), false);
+        // window.addEventListener("beforeunload", () => this.onUnload(), false);
+    }
 
     render() {
         console.log('GOING INTO RETURN');

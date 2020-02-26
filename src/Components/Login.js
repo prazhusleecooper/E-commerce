@@ -1,6 +1,8 @@
 import "../resources/CSS/Login.css";
 import React, {Component} from "react";
 import {ToastContainer, toast} from "react-toastify";
+import { connect } from "react-redux";
+import { clearItems} from "../actions";
 
 let jwtDecode = require('jwt-decode');
 
@@ -11,12 +13,6 @@ class Login extends Component {
             email:"",
             password: "",
         };
-        console.log("THE LS ITEM IS::", localStorage.getItem('TOKEN'));
-        if(localStorage.getItem('TOKEN') === null) {
-            console.log("YESSSSSSSSSSSSSSSS");
-        } else {
-            console.log("NOOOOOOOOOOOOO");
-        }
     }
 
     //non-rendering methods
@@ -62,9 +58,7 @@ class Login extends Component {
                             toast.warn("The email does not exist");
                         } else if(result.code === 1) {
                             toast.warn("Credentials are valid");
-                            let time = Math.round((new Date()).getTime() / 1000);
-                            console.log("THE DECODED TOKEN IS:::", jwtDecode(result.token));
-                            console.log("time::", time);
+                            // let time = Math.round((new Date()).getTime() / 1000);
                             localStorage.setItem('TOKEN', result.token);
                             localStorage.setItem('cartItems', result.cartItems);
                             window.location = '/home';
@@ -85,6 +79,7 @@ class Login extends Component {
 
     componentDidMount() {
         window.localStorage.clear();
+        this.props.clearItems();
     }
 
     render() {
@@ -113,4 +108,17 @@ class Login extends Component {
     }
 }
 
-export default Login;
+//REDUX methods
+const mapStateToProps = (state) => {
+    return {
+        addedItems: state.addedItems
+    }
+};
+
+const mapDispatchToProps = () => {
+    return {
+        clearItems,
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps())(Login);

@@ -31,7 +31,7 @@
         border: 1px solid var(--border);
     }
 
-    .nav-text-home, .nav-text-cart {
+    .nav-text-home, .nav-text-cart, .nav-text-login {
         color: var(--text-plain);
         text-decoration: underline;
         cursor: pointer;
@@ -117,7 +117,7 @@
         border: 1px solid var(--border);
     }
 
-    .nav-text-home, .nav-text-cart {
+    .nav-text-home, .nav-text-cart, .nav-text-login {
         color: var(--text-plain);
         text-decoration: underline;
         cursor: pointer;
@@ -199,7 +199,7 @@
         font-family: Cairo, sans-serif;
     }
 
-    .nav-text-home, .nav-text-cart {
+    .nav-text-home, .nav-text-cart, .nav-text-login {
         display: none;
     }
 
@@ -265,7 +265,7 @@
         font-family: Cairo, sans-serif;
     }
 
-    .nav-text-home, .nav-text-cart {
+    .nav-text-home, .nav-text-cart, .nav-text-login {
         display: none;
     }
 
