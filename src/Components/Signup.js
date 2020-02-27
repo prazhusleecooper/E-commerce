@@ -33,8 +33,26 @@ class Signup extends Component {
         if(this.state.password != this.state.confirmPassword) {
             toast.error("The Entered passwords donot match. Please try again");
         } else if(regularExpression.test(this.state.email)) {
-            console.log("ALL CREDENTIALS VALID");
-        //    START HERE
+            let userDetails = {
+                "email": this.state.email,
+                "password": this.state.password,
+            };
+            fetch('http://localhost:1338/createuser',
+                {
+                    method: 'POST',
+                    mode: 'cors',
+                    body: JSON.stringify(userDetails),
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        console.log("USER HAS BEEN CREATED:::", result);
+                    },
+                    (error) => {
+                        console.log("ERROR CREATING USER::", error);
+                    }
+                );
         }
     };
 
