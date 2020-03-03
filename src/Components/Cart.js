@@ -4,6 +4,7 @@ import SVG from 'react-inlinesvg';
 import { MDBContainer, MDBModal, MDBModalBody } from 'mdbreact';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
 import {addItem, setRetrievedState, removeItem, decreaseQty, clearItems} from "../actions";
 
 let jwtDecode = require('jwt-decode');
@@ -64,71 +65,87 @@ class Cart extends Component {
 
     /* Method to remove item from the cart - remove the item completely */
     removeCartItem = (item) => {
-        let index = this.state.cartItems.indexOf(item);
-        if(index !== -1) {
-            let tempArray = this.state.cartItems;
-            tempArray.splice(index, 1);
-            this.setState({
-                cartItems: tempArray
-            });
-            this.props.removeItem(item);
+        if(this.sessionTimeout()) {
+            let index = this.state.cartItems.indexOf(item);
+            if(index !== -1) {
+                let tempArray = this.state.cartItems;
+                tempArray.splice(index, 1);
+                this.setState({
+                    cartItems: tempArray
+                });
+                this.props.removeItem(item);
+                toast.warn('Item removed from cart');
+            }
+        } else {
+            toast.error('Session timed out. Please refresh and login');
         }
     };
 
     /* Method to increase the item quantity by one unit */
     increaseQty = (item) => {
-         let index = this.state.cartItems.indexOf(item);
-         console.log("THE INDEX IS::", index);
-         if(index !== -1) {
-             this.props.addItem(item);
-             this.setState({
-                 cartItems: this.props.addedItems
-             });
-         }
-
+        if(this.sessionTimeout()) {
+             let index = this.state.cartItems.indexOf(item);
+             console.log("THE INDEX IS::", index);
+             if(index !== -1) {
+                 this.props.addItem(item);
+                 this.setState({
+                     cartItems: this.props.addedItems
+                 });
+             }
+        } else {
+            toast.error('Session timed out. Please refresh and login');
+        }
     };
 
     /* Method to decrease the item quantity by one unit */
     decreaseQty = (item) => {
-         let index = this.state.cartItems.indexOf(item);
-         if(index !== -1) {
-             this.props.decreaseQty(item);
-             this.setState({
-                 cartItems: this.props.addedItems
-             });
+         if(this.sessionTimeout()) {
+             let index = this.state.cartItems.indexOf(item);
+             if(index !== -1) {
+                 this.props.decreaseQty(item);
+                 this.setState({
+                     cartItems: this.props.addedItems
+                 });
+             }
+         } else {
+             toast.error('Session timed out. Please refresh and login');
          }
      };
 
     /* Checkout the items - delete item units */
     checkoutItems = () => {
-        console.log("CHECKOUT BTN CLICKED::::", this.state.cartItems);
-        let checkoutItemsList = this.state.cartItems;
-        checkoutItemsList.map(item => {
-           item.totalQuantity -= item.quantity;
-           item.total_price = item.price;
-           item.quantity = 1;
-        });
-        console.log("checkoutItemsList::", checkoutItemsList);
-        console.log("checkoutItemsList STRINGIFY::", JSON.stringify(checkoutItemsList));
-        fetch("http://localhost:1338/delUnits",
-            {
-                method: 'PATCH',
-                mode: 'cors',
-                body: JSON.stringify(checkoutItemsList),
-                headers: { "Content-Type": "application/json" }
-            })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    console.log("patched::", result);
-                },
-                (error) => {
-                    console.log("ERROR PATCHING::", error);
-                }
-            );
-
-        this.state.cartItems = [];
-        this.props.clearItems();
+        if(this.sessionTimeout()) {
+            console.log("CHECKOUT BTN CLICKED::::", this.state.cartItems);
+            let checkoutItemsList = this.state.cartItems;
+            checkoutItemsList.map(item => {
+               item.totalQuantity -= item.quantity;
+               item.total_price = item.price;
+               item.quantity = 1;
+            });
+            console.log("checkoutItemsList::", checkoutItemsList);
+            console.log("checkoutItemsList STRINGIFY::", JSON.stringify(checkoutItemsList));
+            fetch("http://localhost:1338/delUnits",
+                {
+                    method: 'PATCH',
+                    mode: 'cors',
+                    body: JSON.stringify(checkoutItemsList),
+                    headers: { "Content-Type": "application/json" }
+                })
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        console.log("patched::", result);
+                    },
+                    (error) => {
+                        console.log("ERROR PATCHING::", error);
+                    }
+                );
+            toast.warn('Checkout Successful!!');
+            this.state.cartItems = [];
+            this.props.clearItems();
+        } else {
+            toast.error('Session timed out. Please refresh and login');
+        }
     };
 
     //Rendering methods
@@ -242,6 +259,9 @@ class Cart extends Component {
                     loggedIn: false
                 });
                 // window.location
+                return false;
+            } else {
+                return true;
             }
         }
     };
@@ -264,10 +284,11 @@ class Cart extends Component {
     }
 
     render() {
-        console.log('GOING INTO RETURN');
         return (
            <div className="MidSection">
                {this.cartInit()}
+               {/* toastify toast notifications */}
+               <ToastContainer enableMultiContainer position={toast.POSITION.TOP_RIGHT} autoClose={4000} />
             <div className="CartSection">
                 {/* MDB modal popup */}
                 <MDBContainer>

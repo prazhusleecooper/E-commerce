@@ -7,6 +7,7 @@ import Footer from './Components/Footer.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
+import Customers from "./Components/Customers";
 
 
 class App extends Component {
@@ -45,7 +46,9 @@ class App extends Component {
               <Route path="/signup">
                   <Signup />
               </Route>
-
+              <Route path="/customers">
+                  <Customers />
+              </Route>
           </Switch>
         <Footer />
       </div>

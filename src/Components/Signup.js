@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {toast, ToastContainer} from "react-toastify";
 import '../resources/CSS/Signup.css';
+import { history } from 'react-router-dom';
 
 class Signup extends Component {
     constructor(props) {
@@ -30,8 +31,14 @@ class Signup extends Component {
     //handle the signup process
     handleSignup = () => {
         let regularExpression = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
-        if(this.state.password != this.state.confirmPassword) {
-            toast.error("The Entered passwords donot match. Please try again");
+        if(this.state.password !== this.state.confirmPassword) {
+            toast.error("The Entered passwords donot match. Please try again", {autoClose: 6000});
+        } else if(this.state.email === '') {
+            toast.error("The email field is empty. Please enter the valid password", {autoClose: 5000});
+        } else if(this.state.password === '') {
+            toast.error("The password field is empty. Please enter the valid password", {autoClose: 5000});
+        } else if(this.state.confirmPassword === '') {
+            toast.error("The confirm password field is empty. Please enter the valid password", {autoClose: 5000});
         } else if(regularExpression.test(this.state.email)) {
             let userDetails = {
                 "email": this.state.email,
@@ -47,21 +54,36 @@ class Signup extends Component {
                 .then(res => res.json())
                 .then(
                     (result) => {
-                        console.log("USER HAS BEEN CREATED:::", result);
+                        console.log("USER HAS BEEN CREATED:::", history);
+                        if(result.code === -1) {
+                            toast.error("This email already exists!", {autoClose: 7000});
+                            toast.error("Try with different email or login with this email", {autoClose: 7000});
+                        } else if(result.code === 0) {
+                            toast.error("Error Signing you up. Please try again", {autoClose: 6000});
+                        } else if(result.code === 1) {
+                            toast.warn("Signup successful", {autoClose: 5000});
+                            window.sessionStorage.setItem('signup', 'success');
+                            window.location = '/login';
+                        }
                     },
                     (error) => {
                         console.log("ERROR CREATING USER::", error);
+                        toast.error("Error Signing you up. Please try again", {autoClose: 6000});
                     }
                 );
         }
     };
 
+    componentDidMount() {
+        window.localStorage.clear();
+        window.sessionStorage.clear();
+    }
 
     render() {
         return(
             <div>
                 <div className="d-flex flex-column align-items-center justify-content-start login-page-main">
-                    <ToastContainer enableMultiContainer position={toast.POSITION.TOP_RIGHT} autoClose={4000}/>
+                    <ToastContainer enableMultiContainer position={toast.POSITION.TOP_RIGHT} />
                     <div className="form-section">
                         <div className="heading-text-section">
                             <span className="heading-text">Signup</span>

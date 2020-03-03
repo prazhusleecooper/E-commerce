@@ -3,6 +3,7 @@ import React, {Component} from "react";
 import {ToastContainer, toast} from "react-toastify";
 import { connect } from "react-redux";
 import { clearItems} from "../actions";
+import {NavLink} from "react-bootstrap";
 
 let jwtDecode = require('jwt-decode');
 
@@ -12,6 +13,7 @@ class Login extends Component {
         this.state = {
             email:"",
             password: "",
+            signinText: false,
         };
     }
 
@@ -31,7 +33,7 @@ class Login extends Component {
         console.log('STATE EMAIL::', this.state.email);
         console.log('STATE PASSWORD::', this.state.password);
         let regularExpression = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
-        if(regularExpression.test(this.state.email)) {
+        if(regularExpression.test(this.state.email) && this.state.password !== '') {
             console.log("EMAIL ADDRESS IS VALID");
             let userLoginCredentials = {
                 email: this.state.email,
@@ -55,15 +57,15 @@ class Login extends Component {
                     (result) => {
                         console.log("THE RESULT IS::", result);
                         if(result.code === -1) {
-                            toast.warn("The email does not exist");
+                            toast.warn("The email does not exist", {autoClose: 6000});
                         } else if(result.code === 1) {
-                            toast.warn("Credentials are valid");
+                            toast.warn("Credentials are valid", {autoClose: 4000});
                             // let time = Math.round((new Date()).getTime() / 1000);
                             localStorage.setItem('TOKEN', result.token);
                             localStorage.setItem('cartItems', result.cartItems);
                             window.location = '/home';
                         } else if(result.code === 2) {
-                            toast.warn("The Password entered is wrong, please try again");
+                            toast.warn("The Password entered is wrong, please try again", {autoClose: 6000});
                         }
                         // console.log("THE loc IS::", this.props.location.pathname);
                         // window.location = '/home';
@@ -73,20 +75,48 @@ class Login extends Component {
                     }
                 );
         } else {
-            console.log("INVALID EMAIL ADDRESS");
+            toast.error("Invalid credentials. Please try again with valid credentials", {autoClose: 6000});
         }
+    };
+
+    //Rendering methods
+    //Render instruction in case that the user's sign up was successful
+
+    buttomText = () => {
+      if(this.state.signupText) {
+          return(
+            <span className="signup-info-text">Your Sign-up was successful. Please login to proceed </span>
+          );
+          sessionStorage.removeItem('signup');
+      } else if(!this.state.signupText) {
+          return(
+              <span className="signup-text">
+                  Already have an account? Click here to <span className="signup-link" onClick={() => window.location='/signup'}>Sign-up</span>
+              </span>
+          );
+      }
     };
 
     componentDidMount() {
         window.localStorage.clear();
         this.props.clearItems();
+        if(window.sessionStorage.getItem('signup') === 'success') {
+            this.setState({
+               signupText: true
+            });
+            window.sessionStorage.clear()
+        }
+    }
+
+    componentWillUnmount() {
+        window.sessionStorage.clear();
     }
 
     render() {
         return(
             <div>
                 <div className="d-flex flex-column align-items-center justify-content-start login-page-main">
-                    <ToastContainer enableMultiContainer position={toast.POSITION.TOP_RIGHT} autoClose={4000}/>
+                    <ToastContainer enableMultiContainer position={toast.POSITION.TOP_RIGHT} />
                     <div className="form-section">
                         <div className="heading-text-section">
                             <span className="heading-text">Login</span>
@@ -100,6 +130,9 @@ class Login extends Component {
                         </div>
                         <div className="d-flex flex-row align-items-center justify-content-center submit-btn-section">
                             <button className="submit-btn" onClick={() => this.handleLogin()}>Login</button>
+                        </div>
+                        <div className="d-flex flex-column align-items-center justify-content-center bottom-text-section">
+                            { this.buttomText() }
                         </div>
                     </div>
                 </div>

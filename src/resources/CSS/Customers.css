@@ -1,0 +1,39 @@
+@import "variable.css";
+
+/*@media only screen and (min-width: 992px) {*/
+    .customers-div {
+        margin: 0 2vw 0 2vw;
+        padding: 15px 15px 15px 15px;
+        height: 70vh;
+        border: 1px solid var(--border);
+        overflow-y: auto;
+    }
+
+    .customers-heading {
+        font-size: 30px;
+        font-family: Cairo;
+        color: var(--text-heading);
+    }
+
+    .heading-hr {
+        border: 2px solid var(--primary-yellow);
+    }
+
+    .field-name {
+        font-size: 20px;
+        font-family: Cairo;
+        color: var(--primary-yellow-text);
+    }
+
+    .user-data {
+        color: var(--text-plain);
+    }
+
+    .users-hr {
+        border: 1px solid lightgray;
+    }
+
+    .delete-user-btn {
+        margin: 1em 0 0 0;
+    }
+/*}*/

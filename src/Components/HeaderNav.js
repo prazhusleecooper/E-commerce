@@ -3,12 +3,16 @@ import '../resources/CSS/HeaderNav.css';
 import SVG from "react-inlinesvg";
 import { NavLink } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Dropdown } from 'react-bootstrap';
+
+let jwtDecode = require('jwt-decode');
 
 class HeaderNav extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mobileMenu: false
+            mobileMenu: false,
+            currentLocation: window.location.pathname,
         }
     }
 
@@ -22,32 +26,154 @@ class HeaderNav extends Component {
     //Rendering methods
     /* method to render the hamburger menu - only one mobile screens */
     renderHamburgerMenu = () => {
-        return (
-            <div className="menu-mob">
-                <div>
-                    <NavLink exact to="/home" className="nav-link-mob" activeClassName="nav-link-mob-active">Home</NavLink>
+
+        if(window.location.pathname === '/login'){
+            return (
+                <div className="menu-mob">
+                    <div onClick={() => this.triggerHamburgerMenu()}>
+                        <NavLink exact to="/home" className="nav-link-mob" activeClassName="nav-link-mob-active">Home</NavLink>
+                    </div>
+                    <hr className="mx-3 my-0 menu-hr"/>
+                    <div onClick={() => this.triggerHamburgerMenu()}>
+                        <NavLink exact to="/cart" className="nav-link-mob" activeClassName="nav-link-mob-active ">Cart</NavLink>
+                    </div>
                 </div>
-                <hr className="mx-3 my-0 menu-hr"/>
-                <div>
-                    <NavLink exact to="/cart" className="nav-link-mob" activeClassName="nav-link-mob-active ">Cart</NavLink>
+            );
+        } else if(window.location.pathname === '/signup') {
+            return(
+                <div className="menu-mob">
+                    <div onClick={() => this.triggerHamburgerMenu()}>
+                        <NavLink exact to="/home" className="nav-link-mob" activeClassName="nav-link-mob-active">Home</NavLink>
+                    </div>
+                    <hr className="mx-3 my-0 menu-hr"/>
+                    <div onClick={() => this.triggerHamburgerMenu()}>
+                        <NavLink exact to="/cart" className="nav-link-mob" activeClassName="nav-link-mob-active ">Cart</NavLink>
+                    </div>
+                    <hr className="mx-3 my-0 menu-hr"/>
+                    <div onClick={() => this.triggerHamburgerMenu()}>
+                        <NavLink exact to="/login" className="nav-link-mob" activeClassName="nav-link-mob-active ">login</NavLink>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        } else if(window.location.pathname === '/home' || window.location.pathname === '/cart' || window.location.pathname === '/customers') {
+            if(localStorage.getItem('TOKEN') != null) {
+                if(jwtDecode(localStorage.getItem('TOKEN')).userRole === 1) {
+                    return(
+                        <div className="menu-mob">
+                            <div>
+                                <div className="email-hamburger">{ jwtDecode(window.localStorage.getItem('TOKEN')).email }</div>
+                            </div>
+                            <div onClick={() => this.triggerHamburgerMenu()}>
+                                <NavLink exact to="/home" className="nav-link-mob" activeClassName="nav-link-mob-active">Home</NavLink>
+                            </div>
+                            <hr className="mx-3 my-0 menu-hr"/>
+                            <div onClick={() => this.triggerHamburgerMenu()}>
+                                <NavLink exact to="/cart" className="nav-link-mob" activeClassName="nav-link-mob-active ">Cart</NavLink>
+                            </div>
+                            <hr className="mx-3 my-0 menu-hr"/>
+                            <div onClick={() => this.triggerHamburgerMenu()}>
+                                <NavLink exact to="/customers" className="nav-link-mob" activeClassName="nav-link-mob-active ">Customers</NavLink>
+                            </div>
+                            <hr className="mx-3 my-0 menu-hr"/>
+                            <div onClick={() => this.triggerHamburgerMenu()}>
+                                <NavLink exact to="/login" className="nav-link-mob" activeClassName="nav-link-mob-active ">logout</NavLink>
+                            </div>
+                        </div>
+                    );
+                }
+                else {
+                    return(
+                        <div className="menu-mob">
+                            <div>
+                                <div className="email-hamburger">{ jwtDecode(window.localStorage.getItem('TOKEN')).email }</div>
+                            </div>
+                            <div onClick={() => this.triggerHamburgerMenu()}>
+                                <NavLink exact to="/home" className="nav-link-mob" activeClassName="nav-link-mob-active">Home</NavLink>
+                            </div>
+                            <hr className="mx-3 my-0 menu-hr"/>
+                            <div onClick={() => this.triggerHamburgerMenu()}>
+                                <NavLink exact to="/cart" className="nav-link-mob" activeClassName="nav-link-mob-active ">Cart</NavLink>
+                            </div>
+                            <hr className="mx-3 my-0 menu-hr"/>
+                            <div onClick={() => this.triggerHamburgerMenu()}>
+                                <NavLink exact to="/login" className="nav-link-mob" activeClassName="nav-link-mob-active ">logout</NavLink>
+                            </div>
+                        </div>
+                     );
+                }
+            } else if(localStorage.getItem('TOKEN') === null) {
+                return(
+                    <div className="menu-mob">
+                        <div>
+                            <NavLink exact to="/home" className="nav-link-mob" activeClassName="nav-link-mob-active">Home</NavLink>
+                        </div>
+                        <hr className="mx-3 my-0 menu-hr"/>
+                        <div>
+                            <NavLink exact to="/cart" className="nav-link-mob" activeClassName="nav-link-mob-active ">Cart</NavLink>
+                        </div>
+                        <hr className="mx-3 my-0 menu-hr"/>
+                        <div>
+                            <NavLink exact to="/login" className="nav-link-mob" activeClassName="nav-link-mob-active ">login</NavLink>
+                        </div>
+                    </div>
+                );
+            }
+        }
     };
 
     loginNavLink = () => {
         if(window.location.pathname === '/login') {
             return '';
-        } else if(localStorage.getItem('TOKEN') === null) {
+        } else if(window.location.pathname === '/signup') {
+            return(
+                <NavLink exact to="/login" className="nav-link" activeClassName="nav-link-active " onClick={() => this.triggerHamburgerMenu()} >Login</NavLink>
+            );
+        } else if(window.localStorage.getItem('TOKEN') === null) {
             return(
                 <NavLink exact to="/login" className="nav-link" activeClassName="nav-link-active " onClick={() => this.triggerHamburgerMenu()} >Login</NavLink>
             );
         } else {
+            let userEmail = jwtDecode(window.localStorage.getItem('TOKEN')).email;
+            console.log('%c USER EMAIL', 'background-color: yellow', userEmail);
             return(
-                <NavLink exact to="/login" className="nav-link" activeClassName="nav-link-active " onClick={() => this.triggerHamburgerMenu()} >Logout</NavLink>
+                <Dropdown>
+                    <Dropdown.Toggle variant="warning" id="dropdown-basic">
+                        {userEmail}
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                        <Dropdown.Item><NavLink exact to="/login" className="nav-link" activeClassName="nav-link-active " onClick={() => this.triggerHamburgerMenu()} >Logout</NavLink></Dropdown.Item>
+                        <Dropdown.Item>
+                            <div className="mr-5 nav-text-customers" >
+                                { this.customersNavLink() }
+                            </div>
+                        </Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+                // <NavLink exact to="/login" className="nav-link" activeClassName="nav-link-active " onClick={() => this.triggerHamburgerMenu()} >Logout</NavLink>
             );
         }
     };
+
+    //Render the customers nav-link (only for SUPER-ADMINS)
+    customersNavLink = () => {
+        if(localStorage.getItem('TOKEN') !== null && jwtDecode(localStorage.getItem('TOKEN')).userRole === 1) {
+                return(
+                    <NavLink exact to="/customers" className="nav-link" activeClassName="nav-link-active " onClick={() => this.triggerHamburgerMenu()} >Customers</NavLink>
+                );
+        } else {
+            return '';
+        }
+    };
+
+    componentDidMount() {
+        console.log('HEADER NAV component did mount');
+        if(window.location.pathname !== this.state.currentLocation) {
+            this.setState({
+                mobileMenu: false
+            });
+        }
+    }
 
     render() {
         return(
@@ -73,26 +199,10 @@ class HeaderNav extends Component {
                         <div className="mr-5 nav-text-login" >
                             {/*<NavLink exact to="/login" className="nav-link" activeClassName="nav-link-active " onClick={() => this.triggerHamburgerMenu()} >Login</NavLink>*/}
                             { this.loginNavLink() }
-                            {/*
-
-
-
-
-
-
-                            CLEAR REDUX AND LOCAL STORAGE ITEMS WHEN LOGOUT(or LOGIN)
-
-
-
-
-
-
-
-
-                            */}
                         </div>
+
                         <div className="hamburger-menu" onClick={() => this.triggerHamburgerMenu()}>
-                            <SVG src='<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="2em" viewBox="0 0 469.333 469.333" style="enable-background:new 0 0 469.333 469.333;" xml:space="preserve" width="512px" height="512px" className=""><g><g><g><g><path d="M53.333,106.667H416c29.417,0,53.333-23.927,53.333-53.333S445.417,0,416,0H53.333C23.917,0,0,23.927,0,53.333     S23.917,106.667,53.333,106.667z" data-original="#000000" className="active-path" data-old_color="#000000" fill="#FFC400"/><path d="M416,181.333H53.333C23.917,181.333,0,205.26,0,234.667S23.917,288,53.333,288H416c29.417,0,53.333-23.927,53.333-53.333     S445.417,181.333,416,181.333z" data-original="#000000" className="active-path" data-old_color="#000000" fill="#FFC400"/><path d="M416,362.667H53.333C23.917,362.667,0,386.594,0,416s23.917,53.333,53.333,53.333H416     c29.417,0,53.333-23.927,53.333-53.333S445.417,362.667,416,362.667z" data-original="#000000" className="active-path" fill="#FFC400"/></g></g></g></g> </svg>'/>
+                            <SVG src='<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="2em" height="2em" viewBox="0 0 469.333 469.333" style="enable-background:new 0 0 469.333 469.333;" xml:space="preserve" width="512px" height="512px" className=""><g><g><g><g><path d="M53.333,106.667H416c29.417,0,53.333-23.927,53.333-53.333S445.417,0,416,0H53.333C23.917,0,0,23.927,0,53.333     S23.917,106.667,53.333,106.667z" data-original="#000000" className="active-path" data-old_color="#000000" fill="#FFC400"/><path d="M416,181.333H53.333C23.917,181.333,0,205.26,0,234.667S23.917,288,53.333,288H416c29.417,0,53.333-23.927,53.333-53.333     S445.417,181.333,416,181.333z" data-original="#000000" className="active-path" data-old_color="#000000" fill="#FFC400"/><path d="M416,362.667H53.333C23.917,362.667,0,386.594,0,416s23.917,53.333,53.333,53.333H416     c29.417,0,53.333-23.927,53.333-53.333S445.417,362.667,416,362.667z" data-original="#000000" className="active-path" fill="#FFC400"/></g></g></g></g> </svg>'/>
                         </div>
                     </div>
                 </div>

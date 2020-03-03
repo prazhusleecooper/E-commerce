@@ -201,6 +201,88 @@
         font-weight: 600;
         font-family: Cairo, sans-serif;
     }
+
+    /* Add item modal */
+    .add-item-modal-heading {
+        font-size: 35px;
+        font-family: Cairo, sans-serif;
+        color: var(--primary-yellow-text);
+    }
+
+    .add-item-modal-hr {
+        border: 1px solid black;
+        width: 100%;
+        margin: 0 0 .5em 0;
+    }
+
+    .add-item-modal-label {
+        font-size: 20px;
+        font-family: Cairo, sans-serif;
+        color: var(--text-plain);
+    }
+
+    .add-item-modal-input {
+        width: 95%;
+        border: none;
+        border-radius: 5px;
+        height: 3em;
+        background-color: var(--popup-input-bg);
+        font-family: Cairo, sans-serif;
+        padding: 0 .5em 0 .5em;
+    }
+
+    .add-item-modal-btn-section {
+        margin: 1.5em 0 0 0;
+        width: 100%;
+    }
+
+    /* edit item btn  */
+    .edit-item-btn-section {
+        margin: 0 1em .3em 0;
+        cursor: pointer;
+    }
+
+    .edit-item-modal-heading-section {
+        width: 100%;
+    }
+
+    .edit-modal-close-svg-section {
+        cursor: pointer;
+    }
+
+    .edit-item-modal-heading {
+        font-size: 35px;
+        font-family: Cairo, sans-serif;
+        color: var(--primary-yellow-text);
+    }
+
+    .edit-item-modal-hr {
+        border: 1px solid black;
+        width: 100%;
+        margin: 0 0 .5em 0;
+    }
+
+    .edit-item-modal-label {
+        font-size: 20px;
+        font-family: Cairo, sans-serif;
+        color: var(--text-plain);
+    }
+
+    .edit-item-modal-input {
+        width: 95%;
+        border: none;
+        border-radius: 5px;
+        height: 3em;
+        background-color: var(--popup-input-bg);
+        font-family: Cairo, sans-serif;
+        padding: 0 .5em 0 .5em;
+    }
+
+    .edit-item-modal-btn-section {
+        margin: 1.5em 0 0 0;
+        width: 100%;
+    }
+
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px){
@@ -271,6 +353,7 @@
 
     /* filter text  */
     .filter-text {
+        margin: 0 0 0 1.5em;
         font-size: 1.25em;
         font-family: Cairo, sans-serif;
         color: var(--nav-link-active);
@@ -382,6 +465,89 @@
         font-weight: 600;
         font-family: Cairo, sans-serif;
     }
+
+
+    /* Add item modal */
+    .add-item-modal-heading {
+        font-size: 35px;
+        font-family: Cairo, sans-serif;
+        color: var(--primary-yellow-text);
+    }
+
+    .add-item-modal-hr {
+        border: 1px solid black;
+        width: 100%;
+        margin: 0 0 .5em 0;
+    }
+
+    .add-item-modal-label {
+        font-size: 20px;
+        font-family: Cairo, sans-serif;
+        color: var(--text-plain);
+    }
+
+    .add-item-modal-input {
+        width: 95%;
+        border: none;
+        border-radius: 5px;
+        height: 3em;
+        background-color: var(--popup-input-bg);
+        font-family: Cairo, sans-serif;
+        padding: 0 .5em 0 .5em;
+    }
+
+    .add-item-modal-btn-section {
+        margin: 1.5em 0 0 0;
+        width: 100%;
+    }
+
+    /* edit item btn  */
+    .edit-item-btn-section {
+        margin: 0 1em .3em 0;
+        cursor: pointer;
+    }
+
+    .edit-item-modal-heading-section {
+        width: 100%;
+    }
+
+    .edit-modal-close-svg-section {
+        cursor: pointer;
+    }
+
+    .edit-item-modal-heading {
+        font-size: 35px;
+        font-family: Cairo, sans-serif;
+        color: var(--primary-yellow-text);
+    }
+
+    .edit-item-modal-hr {
+        border: 1px solid black;
+        width: 100%;
+        margin: 0 0 .5em 0;
+    }
+
+    .edit-item-modal-label {
+        font-size: 20px;
+        font-family: Cairo, sans-serif;
+        color: var(--text-plain);
+    }
+
+    .edit-item-modal-input {
+        width: 95%;
+        border: none;
+        border-radius: 5px;
+        height: 3em;
+        background-color: var(--popup-input-bg);
+        font-family: Cairo, sans-serif;
+        padding: 0 .5em 0 .5em;
+    }
+
+    .edit-item-modal-btn-section {
+        margin: 1.5em 0 0 0;
+        width: 100%;
+    }
+
 }
 
 
@@ -443,6 +609,7 @@
 
     /* filter text  */
     .filter-text {
+        margin: 0 0 0 1.5em;
         font-size: 1.25em;
         font-family: Cairo, sans-serif;
         color: var(--nav-link-active);
@@ -566,6 +733,89 @@
         font-weight: 600;
         font-family: Cairo, sans-serif;
     }
+
+
+    /* Add item modal */
+    .add-item-modal-heading {
+        font-size: 35px;
+        font-family: Cairo, sans-serif;
+        color: var(--primary-yellow-text);
+    }
+
+    .add-item-modal-hr {
+        border: 1px solid black;
+        width: 100%;
+        margin: 0 0 .5em 0;
+    }
+
+    .add-item-modal-label {
+        font-size: 20px;
+        font-family: Cairo, sans-serif;
+        color: var(--text-plain);
+    }
+
+    .add-item-modal-input {
+        width: 95%;
+        border: none;
+        border-radius: 5px;
+        height: 3em;
+        background-color: var(--popup-input-bg);
+        font-family: Cairo, sans-serif;
+        padding: 0 .5em 0 .5em;
+    }
+
+    .add-item-modal-btn-section {
+        margin: 1.5em 0 0 0;
+        width: 100%;
+    }
+
+    /* edit item btn  */
+    .edit-item-btn-section {
+        margin: 0 1em .3em 0;
+        cursor: pointer;
+    }
+
+    .edit-item-modal-heading-section {
+        width: 100%;
+    }
+
+    .edit-modal-close-svg-section {
+        cursor: pointer;
+    }
+
+    .edit-item-modal-heading {
+        font-size: 35px;
+        font-family: Cairo, sans-serif;
+        color: var(--primary-yellow-text);
+    }
+
+    .edit-item-modal-hr {
+        border: 1px solid black;
+        width: 100%;
+        margin: 0 0 .5em 0;
+    }
+
+    .edit-item-modal-label {
+        font-size: 20px;
+        font-family: Cairo, sans-serif;
+        color: var(--text-plain);
+    }
+
+    .edit-item-modal-input {
+        width: 95%;
+        border: none;
+        border-radius: 5px;
+        height: 3em;
+        background-color: var(--popup-input-bg);
+        font-family: Cairo, sans-serif;
+        padding: 0 .5em 0 .5em;
+    }
+
+    .edit-item-modal-btn-section {
+        margin: 1.5em 0 0 0;
+        width: 100%;
+    }
+
 }
 
 @media only screen and (max-width: 599px){
@@ -626,6 +876,8 @@
 
     /* filter text  */
     .filter-text {
+        margin: 0 0 0 1.5em;
+        margin: 0 0 0 1.5em;
         font-size: 1.25em;
         font-family: Cairo, sans-serif;
         color: var(--nav-link-active);
@@ -749,5 +1001,88 @@
         font-weight: 600;
         font-family: Cairo, sans-serif;
     }
+
+
+    /* Add item modal */
+    .add-item-modal-heading {
+        font-size: 35px;
+        font-family: Cairo, sans-serif;
+        color: var(--primary-yellow-text);
+    }
+
+    .add-item-modal-hr {
+        border: 1px solid black;
+        width: 100%;
+        margin: 0 0 .5em 0;
+    }
+
+    .add-item-modal-label {
+        font-size: 20px;
+        font-family: Cairo, sans-serif;
+        color: var(--text-plain);
+    }
+
+    .add-item-modal-input {
+        width: 95%;
+        border: none;
+        border-radius: 5px;
+        height: 3em;
+        background-color: var(--popup-input-bg);
+        font-family: Cairo, sans-serif;
+        padding: 0 .5em 0 .5em;
+    }
+
+    .add-item-modal-btn-section {
+        margin: 1.5em 0 0 0;
+        width: 100%;
+    }
+
+    /* edit item btn  */
+    .edit-item-btn-section {
+        margin: 0 1em .3em 0;
+        cursor: pointer;
+    }
+
+    .edit-item-modal-heading-section {
+        width: 100%;
+    }
+
+    .edit-modal-close-svg-section {
+        cursor: pointer;
+    }
+
+    .edit-item-modal-heading {
+        font-size: 35px;
+        font-family: Cairo, sans-serif;
+        color: var(--primary-yellow-text);
+    }
+
+    .edit-item-modal-hr {
+        border: 1px solid black;
+        width: 100%;
+        margin: 0 0 .5em 0;
+    }
+
+    .edit-item-modal-label {
+        font-size: 20px;
+        font-family: Cairo, sans-serif;
+        color: var(--text-plain);
+    }
+
+    .edit-item-modal-input {
+        width: 95%;
+        border: none;
+        border-radius: 5px;
+        height: 3em;
+        background-color: var(--popup-input-bg);
+        font-family: Cairo, sans-serif;
+        padding: 0 .5em 0 .5em;
+    }
+
+    .edit-item-modal-btn-section {
+        margin: 1.5em 0 0 0;
+        width: 100%;
+    }
+
 }
 
