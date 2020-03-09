@@ -59,6 +59,7 @@ class Home extends Component {
         };
         let lol = localStorage.getItem('cartItems');
         console.log('THE LOCAL STORAGE ITEM IS:::', lol);
+        console.log('JWT DECODE::::');
     }
 
     /* Toggle on modal popup */
@@ -372,6 +373,18 @@ class Home extends Component {
         );
     };
 
+    /* Rendering the edit item button */
+    renderEditItemBtn = (homeItem) => {
+        console.log('JWT DECODE::::', jwtDecode(localStorage.getItem('TOKEN')));
+        if(jwtDecode(localStorage.getItem('TOKEN')).userRole === 3) {
+            return(
+                <div className="edit-item-btn-section" onClick={() => this. toggleEditItemModal(homeItem)}>
+                    <SVG src='<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="0.75em" viewBox="0 0 383.947 383.947" style="enable-background:new 0 0 383.947 383.947;" xml:space="preserve"><g><g><g><polygon points="0,303.947 0,383.947 80,383.947 316.053,147.893 236.053,67.893    "/><path d="M377.707,56.053L327.893,6.24c-8.32-8.32-21.867-8.32-30.187,0l-39.04,39.04l80,80l39.04-39.04     C386.027,77.92,386.027,64.373,377.707,56.053z"/></g></g></g></svg>' />
+                </div>
+            );
+        }
+    };
+
     /* Rendering item from the home_items_data - default*/
     displayDefaultItems = () => {
         return (
@@ -389,9 +402,11 @@ class Home extends Component {
                                             return (
                                             <div className="d-flex flex-column align-items-center justify-content-center  px-4 pt-3 item-box" key={index}>
                                                 <div className="d-flex flex-row align-items-center justify-content-end pb-2 info-svg-section" >
-                                                    <div className="edit-item-btn-section" onClick={() => this. toggleEditItemModal(homeItem)}>
-                                                        <SVG src='<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="0.75em" viewBox="0 0 383.947 383.947" style="enable-background:new 0 0 383.947 383.947;" xml:space="preserve"><g><g><g><polygon points="0,303.947 0,383.947 80,383.947 316.053,147.893 236.053,67.893    "/><path d="M377.707,56.053L327.893,6.24c-8.32-8.32-21.867-8.32-30.187,0l-39.04,39.04l80,80l39.04-39.04     C386.027,77.92,386.027,64.373,377.707,56.053z"/></g></g></g></svg>' />
-                                                    </div>
+                                                    {this.renderEditItemBtn(homeItem)}
+                                                        {/*<div className="edit-item-btn-section" onClick={() => this. toggleEditItemModal(homeItem)}>
+                                                             <SVG src='<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="0.75em" viewBox="0 0 383.947 383.947" style="enable-background:new 0 0 383.947 383.947;" xml:space="preserve"><g><g><g><polygon points="0,303.947 0,383.947 80,383.947 316.053,147.893 236.053,67.893    "/><path d="M377.707,56.053L327.893,6.24c-8.32-8.32-21.867-8.32-30.187,0l-39.04,39.04l80,80l39.04-39.04     C386.027,77.92,386.027,64.373,377.707,56.053z"/></g></g></g></svg>' />
+                                                        </div>*/}
+
                                                     <SVG src='<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="0.75em" viewBox="0 0 298.667 298.667" xml:space="preserve"><g><g><g><polygon points="42.667,192 0,192 0,298.667 106.667,298.667 106.667,256 42.667,256    "/><polygon points="0,106.667 42.667,106.667 42.667,42.667 106.667,42.667 106.667,0 0,0    "/><polygon points="192,0 192,42.667 256,42.667 256,106.667 298.667,106.667 298.667,0    "/><polygon points="256,256 192,256 192,298.667 298.667,298.667 298.667,192 256,192    "/></g></g></g></svg>'
                                                          className="info-svg" onClick={() => this.toggleOn(homeItem)} />
                                                 </div>
@@ -470,7 +485,7 @@ class Home extends Component {
         if(localStorage.getItem('TOKEN') !== null && jwtDecode(localStorage.getItem('TOKEN')).userRole !== 4) {
             return(
                 <div>
-                    <MDBBtn color="warning" onClick={() => this.toggleAddItemModal()}>Add item</MDBBtn>
+                    <MDBBtn color="warning" onClick={() => this.toggleAddItemModal()} className='add-item-btn'>Add item</MDBBtn>
                 </div>
             );
         }
@@ -723,7 +738,7 @@ class Home extends Component {
                             <div className="filter-text" onClick={() => this.toggleCategoriesModal()}>
                                 Filter
                             </div>
-                            <div className="mx-4 my-3 search-bar-div">
+                            <div className="mr-4 my-3 search-bar-div">
                                 {/* Search Bar */}
                                 <input name="search-bar" placeholder="Search Item" className="search-bar-input-home px-2" onChange={(searchedValue) => this.searchItem(searchedValue)} />
                             </div>

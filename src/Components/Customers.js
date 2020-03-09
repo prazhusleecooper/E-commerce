@@ -78,7 +78,7 @@ class Customers extends Component {
                                             </div>
                                         </div>
                                         <div>
-                                            <MDBBtn color="danger" className='delete-user-btn' onClick={() => this.deleteUser(item)}>Danger</MDBBtn>
+                                            <MDBBtn color="danger" className='delete-user-btn' onClick={() => this.deleteUser(item)}>Delete User</MDBBtn>
                                         </div>
                                         <hr className='users-hr'/>
                                     </div>

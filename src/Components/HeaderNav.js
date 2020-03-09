@@ -142,12 +142,12 @@ class HeaderNav extends Component {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Dropdown.Item><NavLink exact to="/login" className="nav-link" activeClassName="nav-link-active " onClick={() => this.triggerHamburgerMenu()} >Logout</NavLink></Dropdown.Item>
                         <Dropdown.Item>
                             <div className="mr-5 nav-text-customers" >
                                 { this.customersNavLink() }
                             </div>
                         </Dropdown.Item>
+                        <Dropdown.Item><NavLink exact to="/login" className="nav-link" activeClassName="nav-link-active " onClick={() => this.triggerHamburgerMenu()} >Logout</NavLink></Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
                 // <NavLink exact to="/login" className="nav-link" activeClassName="nav-link-active " onClick={() => this.triggerHamburgerMenu()} >Logout</NavLink>
